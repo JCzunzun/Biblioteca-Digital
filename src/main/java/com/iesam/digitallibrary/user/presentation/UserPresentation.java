@@ -4,6 +4,7 @@ import com.iesam.digitallibrary.user.data.UserDataRepository;
 import com.iesam.digitallibrary.user.data.local.UserFileLocalDataSource;
 import com.iesam.digitallibrary.user.domain.CreateUserUseCase;
 import com.iesam.digitallibrary.user.domain.DeleteUserUserCase;
+import com.iesam.digitallibrary.user.domain.ModifyUserUseCase;
 import com.iesam.digitallibrary.user.domain.User;
 
 import java.util.Scanner;
@@ -37,6 +38,24 @@ public class UserPresentation {
                 System.out.println("Digite el id del usuario a eliminar");
                 String idDelete= sc.next();
                 deleteUser(idDelete);
+                break;
+
+            case 3:
+                System.out.println("Digite el id");
+                String idModified= sc.next();
+                System.out.println("Digite el dni");
+                String dniModified= sc.next();
+                System.out.println("Digite el nombre");
+                String nameModified= sc.next();
+                System.out.println("Digite el email");
+                String emailModified= sc.next();
+                System.out.println("Digite el numero de telefono");
+                String phoneModified= sc.next();
+                System.out.println("Digite la direccion");
+                String addressModiofied= sc.next();
+                User userModified= new User(idModified,dniModified,nameModified,emailModified,phoneModified,addressModiofied,null);
+                modifyUser(userModified);
+                break;
         }
     }
     public void createUser(User user){
@@ -46,5 +65,9 @@ public class UserPresentation {
     public void deleteUser(String id){
         DeleteUserUserCase deleteUserUserCase= new DeleteUserUserCase(new UserDataRepository(new UserFileLocalDataSource()));
         deleteUserUserCase.delete(id);
+    }
+    public void modifyUser(User user){
+        ModifyUserUseCase modifyUserUseCase= new ModifyUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
+        modifyUserUseCase.modify(user);
     }
 }

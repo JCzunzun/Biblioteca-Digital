@@ -53,4 +53,10 @@ public class UserFileLocalDataSource implements UserLocalDataInterface{
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void modifyUser(User user) {
+        deleteUSer(user.getId());
+        createUser(user);
+    }
 }
