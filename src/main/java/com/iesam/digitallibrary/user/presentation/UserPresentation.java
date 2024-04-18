@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserPresentation {
-    public void menu(){
+    public static void menu(){
         Scanner sc= new Scanner(System.in);
         System.out.println("0: Salir \n1: Crear Usuario \n2: Borrar usuario \n3: Modificar un usuario " +
                 "\n4: Obtener un listado de usuario");
@@ -63,21 +63,24 @@ public class UserPresentation {
 
         }
     }
-    public void createUser(User user){
+    private static void createUser(User user){
         CreateUserUseCase createUserUseCase= new CreateUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
         createUserUseCase.create(user);
     }
-    public void deleteUser(String id){
+    private static void deleteUser(String id){
         DeleteUserUserCase deleteUserUserCase= new DeleteUserUserCase(new UserDataRepository(new UserFileLocalDataSource()));
         deleteUserUserCase.delete(id);
     }
-    public void modifyUser(User user){
+    private static void modifyUser(User user){
         ModifyUserUseCase modifyUserUseCase= new ModifyUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
         modifyUserUseCase.modify(user);
     }
-    public void getsUsers(){
+    private static void getsUsers(){
         GetsUsersUseCase getsUsersUseCase= new GetsUsersUseCase(new UserDataRepository(new UserFileLocalDataSource()));
         ArrayList<User> users= getsUsersUseCase.obtenerlistado();
-        System.out.println(users.toString());
+        for (User user: users){
+            System.out.println(user);
+        }
+
     }
 }

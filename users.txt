@@ -1,0 +1,3 @@
+{"id":"a","dni":"a","name":"a","email":"a","phone":"a","addres":"a"}
+{"id":"b","dni":"a","name":"a","email":"a","phone":"a","addres":"a"}
+{"id":"c","dni":"a","name":"a","email":"a","phone":"a","addres":"a"}
