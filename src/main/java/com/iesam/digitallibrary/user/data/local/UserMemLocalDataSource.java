@@ -33,4 +33,9 @@ public class UserMemLocalDataSource implements  UserLocalDataInterface{
         deleteUSer(user.getId());
         createUser(user);
     }
+
+    @Override
+    public ArrayList<User> getUsers() {
+        return users;
+    }
 }
