@@ -46,4 +46,17 @@ public class User {
     public String getLoanActives() {
         return loanActives;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", dni='" + dni + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", addres='" + addres + '\'' +
+                ", loanActives='" + loanActives + '\'' +
+                '}';
+    }
 }

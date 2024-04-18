@@ -30,6 +30,7 @@ public class UserMemLocalDataSource implements  UserLocalDataInterface{
 
     @Override
     public void modifyUser(User user) {
-
+        deleteUSer(user.getId());
+        createUser(user);
     }
 }
