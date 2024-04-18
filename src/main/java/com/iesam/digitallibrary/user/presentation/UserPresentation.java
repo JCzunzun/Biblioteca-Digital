@@ -9,7 +9,7 @@ import com.iesam.digitallibrary.user.domain.User;
 import java.util.Scanner;
 
 public class UserPresentation {
-    public void menu(){
+    public static void menu(){
         Scanner sc= new Scanner(System.in);
         System.out.println("0: Salir \n1: Crear Usuario \n2: Borrar usuario");
         int opcion= sc.nextInt();
@@ -39,11 +39,11 @@ public class UserPresentation {
                 deleteUser(idDelete);
         }
     }
-    public void createUser(User user){
+    private static void createUser(User user){
         CreateUserUseCase createUserUseCase= new CreateUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
         createUserUseCase.create(user);
     }
-    public void deleteUser(String id){
+    private static void deleteUser(String id){
         DeleteUserUserCase deleteUserUserCase= new DeleteUserUserCase(new UserDataRepository(new UserFileLocalDataSource()));
         deleteUserUserCase.delete(id);
     }
