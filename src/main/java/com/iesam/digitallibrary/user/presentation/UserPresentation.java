@@ -29,6 +29,7 @@ public class UserPresentation {
                 System.out.println("Digite la direccion");
                 String address= sc.next();
                 User user= new User(id,dni,name,email,phone,address,null);
+                createUser(user);
                 break;
         }
     }
