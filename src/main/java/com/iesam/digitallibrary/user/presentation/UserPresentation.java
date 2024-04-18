@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class UserPresentation {
     public void menu(){
         Scanner sc= new Scanner(System.in);
-        System.out.println("0: Salir \n1: Crear Usuario \n2: Borrar usuario");
+        System.out.println("0: Salir \n1: Crear Usuario \n2: Borrar usuario \n3: Modificar un usuario");
         int opcion= sc.nextInt();
         switch (opcion){
             case 0:
