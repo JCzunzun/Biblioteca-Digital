@@ -18,4 +18,13 @@ public class UserMemLocalDataSource implements  UserLocalDataInterface{
     public void createUser(User user) {
         users.add(user);
     }
+
+    @Override
+    public void deleteUSer(String id) {
+        for(User user: users){
+            if(user.getId().equals(id)){
+                users.remove(user);
+            }
+        }
+    }
 }
