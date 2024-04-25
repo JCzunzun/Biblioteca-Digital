@@ -27,7 +27,7 @@ public class UserFileLocalDataSource implements UserLocalDataInterface{
             FileWriter myWriter = new FileWriter(nameFile,true);
             myWriter.write(gson.toJson(user)+System.lineSeparator());
             myWriter.close();
-            System.out.println("No se logro guardar el usuario");
+            System.out.println("Se logro guardar el usuario");
         } catch (IOException e) {
             System.out.println("Ha ocurrido un error al guardar la informacion");
             e.printStackTrace();
@@ -62,4 +62,11 @@ public class UserFileLocalDataSource implements UserLocalDataInterface{
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void modifyUser(User user) {
+        deleteUSer(user.getId());
+        createUser(user);
+    }
+
 }

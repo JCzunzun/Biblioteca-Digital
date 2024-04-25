@@ -5,4 +5,5 @@ import com.iesam.digitallibrary.user.domain.User;
 public interface UserLocalDataInterface {
     void createUser(User user);
     void deleteUSer(String id);
+    void modifyUser(User user);
 }

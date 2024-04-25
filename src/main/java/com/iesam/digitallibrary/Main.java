@@ -16,7 +16,8 @@ public class Main {
             case 0:
                 break;
             case 1:
-                UserPresentation.menu();
+                UserPresentation userPresentation= new UserPresentation();
+                userPresentation.menu();
                 break;
         }
     }
