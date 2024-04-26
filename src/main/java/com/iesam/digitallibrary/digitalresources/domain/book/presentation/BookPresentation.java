@@ -4,13 +4,16 @@ import com.iesam.digitallibrary.digitalresources.domain.book.data.BookDataReposi
 import com.iesam.digitallibrary.digitalresources.domain.book.data.local.BookFileLocalDataSource;
 import com.iesam.digitallibrary.digitalresources.domain.book.domain.Book;
 import com.iesam.digitallibrary.digitalresources.domain.book.domain.CreateBookUseCase;
+import com.iesam.digitallibrary.digitalresources.domain.book.domain.DeleteBookUseCase;
 
 import java.util.Scanner;
 
 public class BookPresentation {
     public static void menuBook(){
         Scanner sc= new Scanner(System.in);
-        System.out.println("0: Salir \n1: Crear Libro ");
+        System.out.println("0: Salir " +
+                "\n1: Crear Libro " +
+                "\n2: Eliminar un libro");
         int opcion= sc.nextInt();
         switch (opcion){
             case 0:
@@ -32,10 +35,19 @@ public class BookPresentation {
                 String gender= sc.next();
                 createBook(new Book(id,name,stateOfDeterioration,autor,numberOfPages,description,gender));
                 break;
+
+            case 2:
+                System.out.println("Digite el id del libro que quiere borrar");
+                String idDelete= sc.next();
+                deleteBook(idDelete);
         }
     }
     private static void createBook(Book book){
         CreateBookUseCase createBookUseCase = new CreateBookUseCase(new BookDataRepository(new BookFileLocalDataSource()));
         createBookUseCase.execute(book);
+    }
+    private static void deleteBook(String id){
+        DeleteBookUseCase deleteBookUseCase= new DeleteBookUseCase(new BookDataRepository(new BookFileLocalDataSource()));
+        deleteBookUseCase.execute(id);
     }
 }
