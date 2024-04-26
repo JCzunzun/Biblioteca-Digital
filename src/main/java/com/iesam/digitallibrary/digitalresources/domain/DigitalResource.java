@@ -1,4 +1,4 @@
-package com.iesam.digitallibrary.digitalresources;
+package com.iesam.digitallibrary.digitalresources.domain;
 
 public class DigitalResource {
     public final String id;

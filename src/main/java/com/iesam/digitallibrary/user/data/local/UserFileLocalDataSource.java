@@ -7,10 +7,9 @@ import com.iesam.digitallibrary.user.domain.User;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-public class UserFileLocalDataSource implements UserLocalDataInterface{
+public class UserFileLocalDataSource implements UserLocalDataSource {
     private String nameFile="users.txt";
     private Gson gson = new Gson();
 

@@ -3,9 +3,8 @@ package com.iesam.digitallibrary.user.data.local;
 import com.iesam.digitallibrary.user.domain.User;
 
 import java.util.ArrayList;
-import java.util.Map;
 
-public class UserMemLocalDataSource implements  UserLocalDataInterface{
+public class UserMemLocalDataSource implements UserLocalDataSource {
     ArrayList<User> users= new ArrayList<>();
     private static UserMemLocalDataSource instance=null;
     public UserMemLocalDataSource newInstance(){

@@ -1,11 +1,10 @@
-package com.iesam.digitallibrary.digitalresources.book.domain;
+package com.iesam.digitallibrary.digitalresources.domain.book.domain;
 
-import com.iesam.digitallibrary.digitalresources.DigitalResource;
+import com.iesam.digitallibrary.digitalresources.domain.DigitalResource;
 
 public class Book extends DigitalResource {
     public final String numberOfPages;
     public final String description;
-
     public final String gender;
 
     public Book(String id, String name, String stateOfDeterioration, String autor, String numberOfPages, String description, String gender) {
