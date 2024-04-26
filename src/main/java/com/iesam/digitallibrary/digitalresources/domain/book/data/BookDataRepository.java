@@ -18,4 +18,9 @@ public class BookDataRepository implements BookRepository {
     public void deleteBook(String id) {
         bookLocalDataSource.deleteBook(id);
     }
+
+    @Override
+    public void modifiedBook(Book book) {
+        bookLocalDataSource.modifiedBook(book);
+    }
 }

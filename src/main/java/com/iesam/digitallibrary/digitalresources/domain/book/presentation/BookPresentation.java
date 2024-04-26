@@ -5,6 +5,7 @@ import com.iesam.digitallibrary.digitalresources.domain.book.data.local.BookFile
 import com.iesam.digitallibrary.digitalresources.domain.book.domain.Book;
 import com.iesam.digitallibrary.digitalresources.domain.book.domain.CreateBookUseCase;
 import com.iesam.digitallibrary.digitalresources.domain.book.domain.DeleteBookUseCase;
+import com.iesam.digitallibrary.digitalresources.domain.book.domain.ModifiedBookUseCase;
 
 import java.util.Scanner;
 
@@ -13,7 +14,8 @@ public class BookPresentation {
         Scanner sc= new Scanner(System.in);
         System.out.println("0: Salir " +
                 "\n1: Crear Libro " +
-                "\n2: Eliminar un libro");
+                "\n2: Eliminar un libro" +
+                "\n3: Modificar un libro");
         int opcion= sc.nextInt();
         switch (opcion){
             case 0:
@@ -40,6 +42,26 @@ public class BookPresentation {
                 System.out.println("Digite el id del libro que quiere borrar");
                 String idDelete= sc.next();
                 deleteBook(idDelete);
+                break;
+
+            case 3:
+                System.out.println("Digite el id del libro");
+                String idUpdate=sc.next();
+                System.out.println("Digite el nombre del libro");
+                String nameUpdate= sc.next();
+                System.out.println("Ponga el estado de deterioro del libro");
+                String stateOfDeteriorationUpdate=sc.next();
+                System.out.println("Digite el autor del libro");
+                String autorUpdate=sc.next();
+                System.out.println("Digite el numero de paginas");
+                String numberOfPagesUpdate=sc.next();
+                System.out.println("Descripcion del libro");
+                String descriptionUpdate=sc.next();
+                System.out.println("Genero del libro");
+                String genderUpdate= sc.next();
+                deleteBook(idUpdate);
+                modifiedBook(new Book(idUpdate,nameUpdate,stateOfDeteriorationUpdate,autorUpdate,numberOfPagesUpdate,descriptionUpdate,genderUpdate));
+                break;
         }
     }
     private static void createBook(Book book){
@@ -49,5 +71,9 @@ public class BookPresentation {
     private static void deleteBook(String id){
         DeleteBookUseCase deleteBookUseCase= new DeleteBookUseCase(new BookDataRepository(new BookFileLocalDataSource()));
         deleteBookUseCase.execute(id);
+    }
+    private static void modifiedBook(Book book){
+        ModifiedBookUseCase modifiedBookUseCase= new ModifiedBookUseCase(new BookDataRepository(new BookFileLocalDataSource()));
+        modifiedBookUseCase.execute(book);
     }
 }

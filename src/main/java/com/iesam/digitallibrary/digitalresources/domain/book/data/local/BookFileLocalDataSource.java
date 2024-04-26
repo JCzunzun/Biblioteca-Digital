@@ -57,4 +57,10 @@ public class BookFileLocalDataSource implements BookLocalDataSource{
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void modifiedBook(Book book) {
+        createBook(book);
+    }
+
 }

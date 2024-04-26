@@ -26,4 +26,9 @@ public class BookMemLocalDataSource implements BookLocalDataSource{
             }
         }
     }
+
+    @Override
+    public void modifiedBook(Book book) {
+        createBook(book);
+    }
 }
