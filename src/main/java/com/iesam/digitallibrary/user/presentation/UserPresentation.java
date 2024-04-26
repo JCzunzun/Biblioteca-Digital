@@ -2,17 +2,16 @@ package com.iesam.digitallibrary.user.presentation;
 
 import com.iesam.digitallibrary.user.data.UserDataRepository;
 import com.iesam.digitallibrary.user.data.local.UserFileLocalDataSource;
-import com.iesam.digitallibrary.user.domain.CreateUserUseCase;
-import com.iesam.digitallibrary.user.domain.DeleteUserUserCase;
-import com.iesam.digitallibrary.user.domain.ModifyUserUseCase;
-import com.iesam.digitallibrary.user.domain.User;
+import com.iesam.digitallibrary.user.domain.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserPresentation {
-    public void menu(){
+    public static void menu(){
         Scanner sc= new Scanner(System.in);
-        System.out.println("0: Salir \n1: Crear Usuario \n2: Borrar usuario \n3: Modificar un usuario");
+        System.out.println("0: Salir \n1: Crear Usuario \n2: Borrar usuario \n3: Modificar un usuario " +
+                "\n4: Obtener un listado de usuario");
         int opcion= sc.nextInt();
         switch (opcion){
             case 0:
@@ -41,7 +40,7 @@ public class UserPresentation {
                 break;
 
             case 3:
-                System.out.println("Digite el id");
+                System.out.println("Digite el nuevo id");
                 String idModified= sc.next();
                 System.out.println("Digite el dni");
                 String dniModified= sc.next();
@@ -56,18 +55,32 @@ public class UserPresentation {
                 User userModified= new User(idModified,dniModified,nameModified,emailModified,phoneModified,addressModiofied,null);
                 modifyUser(userModified);
                 break;
+            case 4:
+                getsUsers();
+                break;
+            default:
+                break;
+
         }
     }
-    public void createUser(User user){
+    private static void createUser(User user){
         CreateUserUseCase createUserUseCase= new CreateUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
         createUserUseCase.create(user);
     }
-    public void deleteUser(String id){
+    private static void deleteUser(String id){
         DeleteUserUserCase deleteUserUserCase= new DeleteUserUserCase(new UserDataRepository(new UserFileLocalDataSource()));
         deleteUserUserCase.delete(id);
     }
-    public void modifyUser(User user){
+    private static void modifyUser(User user){
         ModifyUserUseCase modifyUserUseCase= new ModifyUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
         modifyUserUseCase.modify(user);
+    }
+    private static void getsUsers(){
+        GetsUsersUseCase getsUsersUseCase= new GetsUsersUseCase(new UserDataRepository(new UserFileLocalDataSource()));
+        ArrayList<User> users= getsUsersUseCase.obtenerlistado();
+        for (User user: users){
+            System.out.println(user);
+        }
+
     }
 }

@@ -4,6 +4,8 @@ import com.iesam.digitallibrary.user.data.local.UserLocalDataInterface;
 import com.iesam.digitallibrary.user.domain.User;
 import com.iesam.digitallibrary.user.domain.UserRepository;
 
+import java.util.ArrayList;
+
 public class UserDataRepository implements UserRepository {
     UserLocalDataInterface userLocalDataInterface;
     public UserDataRepository(UserLocalDataInterface userLocalDataInterface){
@@ -22,5 +24,10 @@ public class UserDataRepository implements UserRepository {
     @Override
     public void modifyUser(User user) {
         userLocalDataInterface.modifyUser(user);
+    }
+
+    @Override
+    public ArrayList<User> getUsers() {
+        return userLocalDataInterface.getUsers();
     }
 }

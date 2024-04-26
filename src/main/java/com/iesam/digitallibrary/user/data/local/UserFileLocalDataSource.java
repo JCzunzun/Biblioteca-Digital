@@ -69,4 +69,27 @@ public class UserFileLocalDataSource implements UserLocalDataInterface{
         createUser(user);
     }
 
+    @Override
+    public ArrayList<User> getUsers() {
+        ArrayList<User> users = new ArrayList<>();
+        try {
+            File ficheroUSer = new File(nameFile);
+            if (!ficheroUSer.exists()) {
+                ficheroUSer.createNewFile();
+            }
+            Scanner scanner = new Scanner(ficheroUSer);
+            while (scanner.hasNextLine()) {
+                String data = scanner.nextLine();
+                User user = gson.fromJson(data, User.class);
+                users.add(user);
+            }
+            return users;
+        }catch (IOException e){
+            System.out.println("Ha ocurrido un error al obtener el listado de usuarios");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
+
