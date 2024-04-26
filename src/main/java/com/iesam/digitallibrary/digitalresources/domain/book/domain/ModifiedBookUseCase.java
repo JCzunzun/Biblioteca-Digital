@@ -7,6 +7,6 @@ public class ModifiedBookUseCase {
         this.bookRepository = bookRepository;
     }
     public void execute(Book book){
-        bookRepository.createBook(book);
+        bookRepository.modifiedBook(book);
     }
 }

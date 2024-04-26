@@ -29,6 +29,12 @@ public class BookMemLocalDataSource implements BookLocalDataSource{
 
     @Override
     public void modifiedBook(Book book) {
+        deleteBook(book.getId());
         createBook(book);
+    }
+
+    @Override
+    public ArrayList<Book> getsBooks() {
+        return books;
     }
 }

@@ -25,4 +25,17 @@ public class Book extends DigitalResource {
     public String getGender() {
         return gender;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "numberOfPages='" + numberOfPages + '\'' +
+                ", description='" + description + '\'' +
+                ", gender='" + gender + '\'' +
+                ", id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", stateOfDeterioration='" + stateOfDeterioration + '\'' +
+                ", autor='" + autor + '\'' +
+                '}';
+    }
 }

@@ -4,6 +4,8 @@ import com.iesam.digitallibrary.digitalresources.domain.book.data.local.BookLoca
 import com.iesam.digitallibrary.digitalresources.domain.book.domain.Book;
 import com.iesam.digitallibrary.digitalresources.domain.book.domain.BookRepository;
 
+import java.util.ArrayList;
+
 public class BookDataRepository implements BookRepository {
     BookLocalDataSource bookLocalDataSource;
     public BookDataRepository(BookLocalDataSource bookLocalDataSource){
@@ -22,5 +24,10 @@ public class BookDataRepository implements BookRepository {
     @Override
     public void modifiedBook(Book book) {
         bookLocalDataSource.modifiedBook(book);
+    }
+
+    @Override
+    public ArrayList<Book> getsBooks() {
+        return bookLocalDataSource.getsBooks();
     }
 }

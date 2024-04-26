@@ -2,11 +2,9 @@ package com.iesam.digitallibrary.digitalresources.domain.book.presentation;
 
 import com.iesam.digitallibrary.digitalresources.domain.book.data.BookDataRepository;
 import com.iesam.digitallibrary.digitalresources.domain.book.data.local.BookFileLocalDataSource;
-import com.iesam.digitallibrary.digitalresources.domain.book.domain.Book;
-import com.iesam.digitallibrary.digitalresources.domain.book.domain.CreateBookUseCase;
-import com.iesam.digitallibrary.digitalresources.domain.book.domain.DeleteBookUseCase;
-import com.iesam.digitallibrary.digitalresources.domain.book.domain.ModifiedBookUseCase;
+import com.iesam.digitallibrary.digitalresources.domain.book.domain.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BookPresentation {
@@ -15,7 +13,8 @@ public class BookPresentation {
         System.out.println("0: Salir " +
                 "\n1: Crear Libro " +
                 "\n2: Eliminar un libro" +
-                "\n3: Modificar un libro");
+                "\n3: Modificar un libro" +
+                "\n4: Obtener un listado de los libros");
         int opcion= sc.nextInt();
         switch (opcion){
             case 0:
@@ -59,8 +58,11 @@ public class BookPresentation {
                 String descriptionUpdate=sc.next();
                 System.out.println("Genero del libro");
                 String genderUpdate= sc.next();
-                deleteBook(idUpdate);
                 modifiedBook(new Book(idUpdate,nameUpdate,stateOfDeteriorationUpdate,autorUpdate,numberOfPagesUpdate,descriptionUpdate,genderUpdate));
+                break;
+
+            case 4:
+                getsBooks();
                 break;
         }
     }
@@ -75,5 +77,12 @@ public class BookPresentation {
     private static void modifiedBook(Book book){
         ModifiedBookUseCase modifiedBookUseCase= new ModifiedBookUseCase(new BookDataRepository(new BookFileLocalDataSource()));
         modifiedBookUseCase.execute(book);
+    }
+    private static void getsBooks(){
+        GetsBooksUseCase getsBooksUseCase= new GetsBooksUseCase(new BookDataRepository(new BookFileLocalDataSource()));
+        ArrayList <Book> books= getsBooksUseCase.execute();
+        for(Book book:books){
+            System.out.println(book);
+        }
     }
 }

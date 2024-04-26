@@ -28,4 +28,14 @@ public class DigitalResource {
     public String getAutor() {
         return autor;
     }
+
+    @Override
+    public String toString() {
+        return "DigitalResource{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", stateOfDeterioration='" + stateOfDeterioration + '\'' +
+                ", autor='" + autor + '\'' +
+                '}';
+    }
 }

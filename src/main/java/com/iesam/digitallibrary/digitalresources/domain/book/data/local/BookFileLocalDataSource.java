@@ -60,7 +60,30 @@ public class BookFileLocalDataSource implements BookLocalDataSource{
 
     @Override
     public void modifiedBook(Book book) {
+        deleteBook(book.getId());
         createBook(book);
+    }
+
+    @Override
+    public ArrayList<Book> getsBooks() {
+        ArrayList<Book> books = new ArrayList<>();
+        try {
+            File ficheroBook = new File(nameFile);
+            if (!ficheroBook.exists()) {
+                ficheroBook.createNewFile();
+            }
+            Scanner scanner = new Scanner(ficheroBook);
+            while (scanner.hasNextLine()) {
+                String data = scanner.nextLine();
+                Book book = gson.fromJson(data, Book.class);
+                books.add(book);
+            }
+            return books;
+        }catch (IOException e){
+            System.out.println("Ha ocurrido un error al obtener el listado de usuarios");
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }
