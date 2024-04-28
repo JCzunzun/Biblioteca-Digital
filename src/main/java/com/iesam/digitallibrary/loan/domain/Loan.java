@@ -1,5 +1,7 @@
 package com.iesam.digitallibrary.loan.domain;
 
+import com.iesam.digitallibrary.digitalresources.domain.DigitalResource;
+
 public class Loan {
     private final String idLoan;
     private final String idUser;
