@@ -17,4 +17,13 @@ public class LoanMemLocalDataSource implements LoanLocalDataSource{
     public void createLoan(Loan loan) {
         loans.add(loan);
     }
+
+    @Override
+    public void deleteLoan(String id) {
+        for(Loan loan: loans){
+            if(loan.getIdLoan().equals(id)){
+                loans.remove(loan);
+            }
+        }
+    }
 }

@@ -4,4 +4,5 @@ import com.iesam.digitallibrary.loan.domain.Loan;
 
 public interface LoanLocalDataSource {
     void createLoan(Loan loan);
+    void deleteLoan(String id);
 }
