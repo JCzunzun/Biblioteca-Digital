@@ -2,6 +2,7 @@ package com.iesam.digitallibrary;
 
 import com.iesam.digitallibrary.digitalresources.domain.DigitalResource;
 import com.iesam.digitallibrary.digitalresources.presentation.DigitalResourcePresentation;
+import com.iesam.digitallibrary.loan.presentation.LoanPresentation;
 import com.iesam.digitallibrary.user.presentation.UserPresentation;
 
 import java.util.Scanner;
@@ -13,7 +14,8 @@ public class Main {
         Scanner sc= new Scanner(System.in);
         System.out.println("0: Para salir " +
                 "\n1: Para acceder al apartado de usuarios" +
-                "\n2: Para acceder al apartado de recursos digitales");
+                "\n2: Para acceder al apartado de recursos digitales" +
+                "\n3: Para acceder al apartado de prestamos");
         int opcion= sc.nextInt();
         switch (opcion){
             case 0:
@@ -23,6 +25,9 @@ public class Main {
                 break;
             case 2:
                 DigitalResourcePresentation.menuResource();
+                break;
+            case 3:
+                LoanPresentation.menu();
                 break;
         }
     }

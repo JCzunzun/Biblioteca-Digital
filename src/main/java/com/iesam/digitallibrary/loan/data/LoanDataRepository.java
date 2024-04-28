@@ -1,4 +1,16 @@
 package com.iesam.digitallibrary.loan.data;
 
-public class LoanDataRepository {
+import com.iesam.digitallibrary.loan.data.local.LoanLocalDataSource;
+import com.iesam.digitallibrary.loan.domain.Loan;
+import com.iesam.digitallibrary.loan.domain.LoanRepository;
+
+public class LoanDataRepository implements LoanRepository {
+    LoanLocalDataSource loanLocalDataSource;
+    public LoanDataRepository(LoanLocalDataSource loanLocalDataSource){
+        this.loanLocalDataSource= loanLocalDataSource;
+    }
+    @Override
+    public void createLoan(Loan loan) {
+        loanLocalDataSource.createLoan(loan);
+    }
 }

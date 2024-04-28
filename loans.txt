@@ -1,0 +1,1 @@
+{"idUser":"a","idDigitalResource":"b","statusLoan":"activo","starLoanDate":"01-03-2024","endLoanDate":"01-03-2025"}

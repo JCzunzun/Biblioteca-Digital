@@ -1,22 +1,26 @@
 package com.iesam.digitallibrary.loan.domain;
 
-import com.iesam.digitallibrary.digitalresources.domain.DigitalResource;
-
 public class Loan {
-    public final DigitalResource digitalResource;
+    private final String idUser;
+    public final String idDigitalResource;
     public final String statusLoan;
     public final String starLoanDate;
     public final String endLoanDate;
 
-    public Loan(DigitalResource digitalResource, String statusLoan, String starLoanDate, String endLoanDate) {
-        this.digitalResource = digitalResource;
+    public Loan(String idUser, String idDigitalResource, String statusLoan, String starLoanDate, String endLoanDate) {
+        this.idUser = idUser;
+        this.idDigitalResource = idDigitalResource;
         this.statusLoan = statusLoan;
         this.starLoanDate = starLoanDate;
         this.endLoanDate = endLoanDate;
     }
 
-    public DigitalResource getDigitalResource() {
-        return digitalResource;
+    public String getIdUser() {
+        return idUser;
+    }
+
+    public String getIdDigitalResource() {
+        return idDigitalResource;
     }
 
     public String getStatusLoan() {
