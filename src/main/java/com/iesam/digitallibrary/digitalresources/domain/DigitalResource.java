@@ -1,4 +1,4 @@
-package com.iesam.digitallibrary.digitalresources;
+package com.iesam.digitallibrary.digitalresources.domain;
 
 public class DigitalResource {
     public final String id;
@@ -27,5 +27,15 @@ public class DigitalResource {
 
     public String getAutor() {
         return autor;
+    }
+
+    @Override
+    public String toString() {
+        return "DigitalResource{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", stateOfDeterioration='" + stateOfDeterioration + '\'' +
+                ", autor='" + autor + '\'' +
+                '}';
     }
 }
