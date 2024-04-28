@@ -6,6 +6,8 @@ import com.iesam.digitallibrary.loan.domain.Loan;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class LoanFileLocalDataSource implements LoanLocalDataSource {
     private String nameFile = "loans.txt";
@@ -27,5 +29,33 @@ public class LoanFileLocalDataSource implements LoanLocalDataSource {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public void deleteLoan(String id) {
+        try {
+            File ficheroLoan = new File(nameFile);
+            if (!ficheroLoan.exists()) {
+                ficheroLoan.createNewFile();
+            }
+            Scanner scanner = new Scanner(ficheroLoan);
+            ArrayList<Loan> loans = new ArrayList<>();
+            while (scanner.hasNextLine()) {
+                String data = scanner.nextLine();
+                Loan loan = gson.fromJson(data, Loan.class);
+                if (!loan.getIdLoan().equals(id)) {
+                    loans.add(loan);
+                }
+            }
+            FileWriter myWriter = new FileWriter(nameFile);
+            for (Loan loan : loans) {
+                myWriter.write(gson.toJson(loan) + System.lineSeparator());
+            }
+            myWriter.close();
+
+        } catch (IOException e){
+            System.out.println("Ha ocurrido un error al eliminar el usuario");
+            e.printStackTrace();
+        }
     }
 }
