@@ -2,10 +2,12 @@ package com.iesam.digitallibrary.loan.data.local;
 
 import com.google.gson.Gson;
 import com.iesam.digitallibrary.loan.domain.Loan;
+import com.iesam.digitallibrary.user.domain.User;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -57,5 +59,30 @@ public class LoanFileLocalDataSource implements LoanLocalDataSource {
             System.out.println("Ha ocurrido un error al eliminar el usuario");
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public ArrayList<Loan> obtainLoansPending() {
+        ArrayList<Loan> loans = new ArrayList<>();
+        try {
+            File ficheroLoan = new File(nameFile);
+            if (!ficheroLoan.exists()) {
+                ficheroLoan.createNewFile();
+            }
+            Scanner scanner = new Scanner(ficheroLoan);
+            while (scanner.hasNextLine()) {
+                String data = scanner.nextLine();
+                Loan loan = gson.fromJson(data, Loan.class);
+                if(!loan.getStatusLoan().equals("Ended") ){
+                    loans.add(loan);
+                }
+
+            }
+            return loans;
+        }catch (IOException e){
+            System.out.println("Ha ocurrido un error al obtener el listado de usuarios");
+            e.printStackTrace();
+        }
+        return null;
     }
 }
