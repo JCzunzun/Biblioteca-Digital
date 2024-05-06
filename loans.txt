@@ -1,1 +1,3 @@
-{"idUser":"a","idDigitalResource":"b","statusLoan":"activo","starLoanDate":"01-03-2024","endLoanDate":"01-03-2025"}
+{"idLoan":"1","idUser":"1","idDigitalResource":"1","statusLoan":"pending","starLoanDate":"Mar 1, 2023, 12:00:00 AM","endLoanDate":"May 12, 2024, 11:59:59 PM"}
+{"idLoan":"2","idUser":"1","idDigitalResource":"3","statusLoan":"pending","starLoanDate":"May 1, 2023, 12:00:00 AM","endLoanDate":"Jul 12, 2024, 11:59:59 PM"}
+{"idLoan":"3","idUser":"1","idDigitalResource":"2","statusLoan":"pending","starLoanDate":"Jun 1, 2023, 12:00:00 AM","endLoanDate":"Mar 12, 2024, 11:59:59 PM"}

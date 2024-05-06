@@ -2,6 +2,7 @@ package com.iesam.digitallibrary.loan.data.local;
 
 import com.iesam.digitallibrary.loan.domain.Loan;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class LoanMemLocalDataSource implements LoanLocalDataSource{
@@ -25,5 +26,16 @@ public class LoanMemLocalDataSource implements LoanLocalDataSource{
                 loans.remove(loan);
             }
         }
+    }
+
+    @Override
+    public ArrayList<Loan> obtainLoansPending() {
+        ArrayList<Loan> loansPending = new ArrayList<>();
+        for(Loan loan:loans){
+            if(!loan.getStatusLoan().equals("Ended")){
+                loansPending.add(loan);
+            }
+        }
+        return loansPending;
     }
 }

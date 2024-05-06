@@ -4,6 +4,8 @@ import com.iesam.digitallibrary.loan.data.local.LoanLocalDataSource;
 import com.iesam.digitallibrary.loan.domain.Loan;
 import com.iesam.digitallibrary.loan.domain.LoanRepository;
 
+import java.util.ArrayList;
+
 public class LoanDataRepository implements LoanRepository {
     LoanLocalDataSource loanLocalDataSource;
     public LoanDataRepository(LoanLocalDataSource loanLocalDataSource){
@@ -17,5 +19,10 @@ public class LoanDataRepository implements LoanRepository {
     @Override
     public void deleteLoan(String id) {
         loanLocalDataSource.deleteLoan(id);
+    }
+
+    @Override
+    public ArrayList<Loan> obtainLoansPending() {
+        return loanLocalDataSource.obtainLoansPending();
     }
 }
