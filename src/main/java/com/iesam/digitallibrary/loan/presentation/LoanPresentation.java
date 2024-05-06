@@ -2,10 +2,7 @@ package com.iesam.digitallibrary.loan.presentation;
 
 import com.iesam.digitallibrary.loan.data.LoanDataRepository;
 import com.iesam.digitallibrary.loan.data.local.LoanFileLocalDataSource;
-import com.iesam.digitallibrary.loan.domain.CreateLoanUseCase;
-import com.iesam.digitallibrary.loan.domain.DeleteLoanUseCase;
-import com.iesam.digitallibrary.loan.domain.GetLoansPendingUseCase;
-import com.iesam.digitallibrary.loan.domain.Loan;
+import com.iesam.digitallibrary.loan.domain.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,7 +17,8 @@ public class LoanPresentation {
         System.out.println("0: Salir " +
                 "\n1: Crear prestamos" +
                 "\n2: Eliminar un prestamo" +
-                "\n3: Obtener listado de prestamos pendientes");
+                "\n3: Obtener listado de prestamos pendientes" +
+                "\n4: Obtener listado de prestamos finalizados");
         int opcion= sc.nextInt();
         switch (opcion){
             case 0:
@@ -60,6 +58,9 @@ public class LoanPresentation {
             case 3:
                 obtainPendingLoans();
                 break;
+            case 4:
+                obtainFinishedLoans();
+                break;
         }
     }
     private static void createLoan (Loan loan){
@@ -73,6 +74,13 @@ public class LoanPresentation {
     private static void obtainPendingLoans(){
         GetLoansPendingUseCase getLoansPendingUseCase = new GetLoansPendingUseCase(new LoanDataRepository(new LoanFileLocalDataSource()));
         ArrayList<Loan> loans=getLoansPendingUseCase.execute();
+        for(Loan loan:loans){
+            System.out.println(loan);
+        }
+    }
+    private static void obtainFinishedLoans(){
+        GetFinishedLoansUseCase getFinishedLoansUseCase= new GetFinishedLoansUseCase(new LoanDataRepository(new LoanFileLocalDataSource()));
+        ArrayList<Loan> loans=getFinishedLoansUseCase.execute();
         for(Loan loan:loans){
             System.out.println(loan);
         }

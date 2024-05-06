@@ -25,4 +25,9 @@ public class LoanDataRepository implements LoanRepository {
     public ArrayList<Loan> obtainLoansPending() {
         return loanLocalDataSource.obtainLoansPending();
     }
+
+    @Override
+    public ArrayList<Loan> obtainFinishedLoans() {
+        return loanLocalDataSource.obtainFinishedLoans();
+    }
 }

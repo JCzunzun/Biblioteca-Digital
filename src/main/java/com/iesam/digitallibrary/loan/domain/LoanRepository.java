@@ -6,4 +6,5 @@ public interface LoanRepository {
     void createLoan(Loan loan);
     void deleteLoan(String id);
     ArrayList<Loan> obtainLoansPending();
+    ArrayList<Loan> obtainFinishedLoans();
 }
