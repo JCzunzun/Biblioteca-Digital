@@ -1,25 +1,26 @@
-## 📝 Breve descripción del ticket asociado a esta PR
-Creación de un menú para poder dar de alta a un usuario(rellenando sus campos).
+The option to access the new functionality is added to the main menu, the class that controls the local resources of the application is updated to allow use of the new function
 
-## 👩‍💻 Resumen de los cambios introducidos
-Creación de un caso de uso para dar de alta a un usuario, añadido el menú para dar de alta al usuario y añadido el formulario para rellenar la información del usuario a dar de alta
+## 📝 Brief description of the ticket associated with this PR
+Creation of use case to obtain the list of completed loans.
 
-## 👁️ Partes del código debe ser revisado con más atención
-UserDataRepository y Main
+## 👩‍💻 Summary of changes introduced
+implementation in the file classes plus the creation of a use case to allow the new functionality to work correctly
+
+## 👁️ Parts of the code should be reviewed more carefully
+GetFinishedLoansUseCase y LoansPresentation
 
 ## 📸 Screenshot o Video
 
-
 ## ✅ Checklist
-- [ ] He añadido un título a la PR descriptivo.
-- [ ] Me he asignado como autor.
-- [ ] He asignado a un revisor.
-- [ ] El proyecto compila y se ejecuta correctamente.
-- [ ] El código se ha probado con todas las opciones posibles.
-- [ ] El código ha sido formateado.
-- [ ] He eliminado código de prueba.
-- [ ] Se han añadido test unitarios.
+- [x] I have added a descriptive title to the PR.
+- [x] I have assigned myself as an author.
+- [x] I have assigned a reviewer.
+- [x] The project compiles and runs correctly.
+- [x] The code has been tested with all possible options.
+- [x] The code has been formatted.
+- [x] I have removed test code.
+- [ ] Unit tests have been added.
 
-## ✋ Notas adicionales (Disclaimer)
-Solo se han añadido los casos de uso que se veían oportunos para dar de alta a un usuario.
-## 🌈 Añade un Gif que represente a esta PR
+## ✋ (Disclaimer)
+Only the use cases that seemed appropriate to view the completed loans have been added.
+## 🌈 Add a Gif that represents this PR

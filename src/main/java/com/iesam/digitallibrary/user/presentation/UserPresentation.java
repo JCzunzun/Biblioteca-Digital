@@ -10,8 +10,12 @@ import java.util.Scanner;
 public class UserPresentation {
     public static void menu(){
         Scanner sc= new Scanner(System.in);
-        System.out.println("0: Salir \n1: Crear Usuario \n2: Borrar usuario \n3: Modificar un usuario " +
-                "\n4: Obtener un listado de usuario");
+        System.out.println("0: Salir " +
+                "\n1: Crear Usuario " +
+                "\n2: Borrar usuario " +
+                "\n3: Modificar un usuario " +
+                "\n4: Obtener un listado de usuario" +
+                "\n5: Obtener un usuario especifico");
         int opcion= sc.nextInt();
         switch (opcion){
             case 0:
@@ -58,6 +62,10 @@ public class UserPresentation {
             case 4:
                 getsUsers();
                 break;
+            case 5:
+                System.out.println("Digite el id del usuario");
+                String idConsulta=sc.next();
+                getUser(idConsulta);
             default:
                 break;
 
@@ -82,5 +90,10 @@ public class UserPresentation {
             System.out.println(user);
         }
 
+    }
+    private static void getUser(String id){
+        GetUserUseCase getUserUseCase= new GetUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
+        User user= getUserUseCase.execute(id);
+        System.out.println(user);
     }
 }

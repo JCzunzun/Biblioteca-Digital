@@ -7,6 +7,7 @@ import com.iesam.digitallibrary.user.domain.User;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class UserFileLocalDataSource implements UserLocalDataSource {
@@ -86,6 +87,17 @@ public class UserFileLocalDataSource implements UserLocalDataSource {
         }catch (IOException e){
             System.out.println("Ha ocurrido un error al obtener el listado de usuarios");
             e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public User getUser(String id) {
+        ArrayList<User> users = getUsers();
+        for (User user : users) {
+            if (Objects.equals(user.getId(), id)) {
+                return user;
+            }
         }
         return null;
     }

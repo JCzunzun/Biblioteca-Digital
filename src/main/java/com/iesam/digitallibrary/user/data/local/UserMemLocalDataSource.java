@@ -37,4 +37,14 @@ public class UserMemLocalDataSource implements UserLocalDataSource {
     public ArrayList<User> getUsers() {
         return users;
     }
+
+    @Override
+    public User getUser(String id) {
+        for(User user:users){
+            if(user.getId().equals(id)){
+                return user;
+            }
+        }
+        return null;
+    }
 }
