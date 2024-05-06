@@ -30,4 +30,9 @@ public class UserDataRepository implements UserRepository {
     public ArrayList<User> getUsers() {
         return userLocalDataSource.getUsers();
     }
+
+    @Override
+    public User getUser(String id) {
+        return userLocalDataSource.getUser(id);
+    }
 }

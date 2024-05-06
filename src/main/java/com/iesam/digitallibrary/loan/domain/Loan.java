@@ -6,8 +6,8 @@ import java.util.Date;
 
 
 public class Loan {
-    private final String idLoan;
-    private final String idUser;
+    public final String idLoan;
+    public final String idUser;
     public final String idDigitalResource;
     public final String statusLoan;
     public final Date starLoanDate;

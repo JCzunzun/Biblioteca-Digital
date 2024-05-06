@@ -9,4 +9,5 @@ public interface UserLocalDataSource {
     void deleteUSer(String id);
     void modifyUser(User user);
     ArrayList<User> getUsers();
+    User getUser(String id);
 }
