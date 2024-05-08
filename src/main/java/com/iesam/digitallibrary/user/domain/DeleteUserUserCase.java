@@ -7,7 +7,7 @@ public class DeleteUserUserCase {
         this.userRepository = userRepository;
     }
 
-    public void delete(String id) {
+    public void execute(String id) {
         userRepository.deleteUser(id);
     }
 }
