@@ -7,7 +7,7 @@ public class CreateUserUseCase {
         this.userRepository = userRepository;
     }
 
-    public void create(User user) {
+    public void execute(User user) {
         userRepository.createUser(user);
     }
 }

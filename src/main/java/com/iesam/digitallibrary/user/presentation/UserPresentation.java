@@ -74,7 +74,7 @@ public class UserPresentation {
 
     private static void createUser(User user) {
         CreateUserUseCase createUserUseCase = new CreateUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
-        createUserUseCase.create(user);
+        createUserUseCase.execute(user);
     }
 
     private static void deleteUser(String id) {
