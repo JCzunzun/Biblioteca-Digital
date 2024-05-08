@@ -11,13 +11,13 @@ import java.util.Scanner;
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        Scanner sc= new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.println("0: Para salir " +
                 "\n1: Para acceder al apartado de usuarios" +
                 "\n2: Para acceder al apartado de recursos digitales" +
                 "\n3: Para acceder al apartado de prestamos");
-        int opcion= sc.nextInt();
-        switch (opcion){
+        int opcion = sc.nextInt();
+        switch (opcion) {
             case 0:
                 break;
             case 1:

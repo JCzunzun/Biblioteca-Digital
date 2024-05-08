@@ -11,7 +11,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class UserFileLocalDataSource implements UserLocalDataSource {
-    private String nameFile="users.txt";
+    private String nameFile = "users.txt";
     private Gson gson = new Gson();
 
     private final Type typeList = new TypeToken<User>() {
@@ -24,8 +24,8 @@ public class UserFileLocalDataSource implements UserLocalDataSource {
             if (!ficheroUSer.exists()) {
                 ficheroUSer.createNewFile();
             }
-            FileWriter myWriter = new FileWriter(nameFile,true);
-            myWriter.write(gson.toJson(user)+System.lineSeparator());
+            FileWriter myWriter = new FileWriter(nameFile, true);
+            myWriter.write(gson.toJson(user) + System.lineSeparator());
             myWriter.close();
             System.out.println("Se logro guardar el usuario");
         } catch (IOException e) {
@@ -57,7 +57,7 @@ public class UserFileLocalDataSource implements UserLocalDataSource {
             }
             myWriter.close();
 
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Ha ocurrido un error al eliminar el usuario");
             e.printStackTrace();
         }
@@ -84,7 +84,7 @@ public class UserFileLocalDataSource implements UserLocalDataSource {
                 users.add(user);
             }
             return users;
-        }catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Ha ocurrido un error al obtener el listado de usuarios");
             e.printStackTrace();
         }

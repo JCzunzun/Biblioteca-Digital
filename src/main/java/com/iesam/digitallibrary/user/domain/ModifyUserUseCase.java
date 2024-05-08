@@ -6,7 +6,8 @@ public class ModifyUserUseCase {
     public ModifyUserUseCase(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-    public void modify(User user){
+
+    public void modify(User user) {
         userRepository.modifyUser(user);
     }
 }

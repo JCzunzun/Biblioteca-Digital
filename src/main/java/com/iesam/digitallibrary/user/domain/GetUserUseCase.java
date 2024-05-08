@@ -6,7 +6,8 @@ public class GetUserUseCase {
     public GetUserUseCase(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-    public User execute(String id){
+
+    public User execute(String id) {
         return userRepository.getUser(id);
     }
 }
