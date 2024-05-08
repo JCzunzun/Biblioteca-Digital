@@ -3,16 +3,19 @@ package com.iesam.digitallibrary.user.data.local;
 import com.iesam.digitallibrary.user.domain.User;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class UserMemLocalDataSource implements UserLocalDataSource {
-    ArrayList<User> users= new ArrayList<>();
-    private static UserMemLocalDataSource instance=null;
-    public UserMemLocalDataSource newInstance(){
-        if(instance== null){
-            instance= new UserMemLocalDataSource();
+    ArrayList<User> users = new ArrayList<>();
+    private static UserMemLocalDataSource instance = null;
+
+    public UserMemLocalDataSource newInstance() {
+        if (instance == null) {
+            instance = new UserMemLocalDataSource();
         }
         return instance;
     }
+
     @Override
     public void createUser(User user) {
         users.add(user);
@@ -20,9 +23,12 @@ public class UserMemLocalDataSource implements UserLocalDataSource {
 
     @Override
     public void deleteUSer(String id) {
-        for(User user: users){
-            if(user.getId().equals(id)){
-                users.remove(user);
+        Iterator<User> iterator = users.iterator();
+        while (iterator.hasNext()) {
+            User user = iterator.next();
+            if (user.getId().equals(id)) {
+                iterator.remove();
+                break;
             }
         }
     }
@@ -40,8 +46,8 @@ public class UserMemLocalDataSource implements UserLocalDataSource {
 
     @Override
     public User getUser(String id) {
-        for(User user:users){
-            if(user.getId().equals(id)){
+        for (User user : users) {
+            if (user.getId().equals(id)) {
                 return user;
             }
         }

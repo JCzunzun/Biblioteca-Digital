@@ -8,7 +8,8 @@ public class GetsUsersUseCase {
     public GetsUsersUseCase(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-    public ArrayList<User> obtenerlistado(){
+
+    public ArrayList<User> obtenerlistado() {
         return userRepository.getUsers();
     }
 }
