@@ -84,12 +84,12 @@ public class UserPresentation {
 
     private static void modifyUser(User user) {
         ModifyUserUseCase modifyUserUseCase = new ModifyUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
-        modifyUserUseCase.modify(user);
+        modifyUserUseCase.execute(user);
     }
 
     private static void getsUsers() {
         GetsUsersUseCase getsUsersUseCase = new GetsUsersUseCase(new UserDataRepository(new UserFileLocalDataSource()));
-        ArrayList<User> users = getsUsersUseCase.obtenerlistado();
+        ArrayList<User> users = getsUsersUseCase.execute();
         for (User user : users) {
             System.out.println(user);
         }

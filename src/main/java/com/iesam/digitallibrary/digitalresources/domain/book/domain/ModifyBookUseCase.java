@@ -1,9 +1,9 @@
 package com.iesam.digitallibrary.digitalresources.domain.book.domain;
 
-public class ModifiedBookUseCase {
+public class ModifyBookUseCase {
     private final BookRepository bookRepository;
 
-    public ModifiedBookUseCase(BookRepository bookRepository) {
+    public ModifyBookUseCase(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
     public void execute(Book book){
