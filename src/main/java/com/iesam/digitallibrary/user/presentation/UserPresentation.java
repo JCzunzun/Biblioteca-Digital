@@ -79,7 +79,7 @@ public class UserPresentation {
 
     private static void deleteUser(String id) {
         DeleteUserUserCase deleteUserUserCase = new DeleteUserUserCase(new UserDataRepository(new UserFileLocalDataSource()));
-        deleteUserUserCase.delete(id);
+        deleteUserUserCase.execute(id);
     }
 
     private static void modifyUser(User user) {
