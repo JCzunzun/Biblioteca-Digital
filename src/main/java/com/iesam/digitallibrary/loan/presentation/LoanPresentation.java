@@ -31,7 +31,7 @@ public class LoanPresentation {
                 String userPrestamos= sc.next();
                 System.out.println("Digite el id del recurso a prestar");
                 String recursoPrestamo= sc.next();
-                createLoan(new Loan(idPrestamo, userPrestamos, recursoPrestamo,));
+                createLoan(new Loan(idPrestamo, userPrestamos, recursoPrestamo));
                 break;
             case 2:
                 System.out.println("Digite el identificador del prestamo");
