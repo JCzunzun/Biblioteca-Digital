@@ -9,7 +9,7 @@ public class GetsUsersUseCase {
         this.userRepository = userRepository;
     }
 
-    public ArrayList<User> obtenerlistado() {
+    public ArrayList<User> execute() {
         return userRepository.getUsers();
     }
 }

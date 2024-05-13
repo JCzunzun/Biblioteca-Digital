@@ -7,7 +7,7 @@ public class ModifyUserUseCase {
         this.userRepository = userRepository;
     }
 
-    public void modify(User user) {
+    public void execute(User user) {
         userRepository.modifyUser(user);
     }
 }

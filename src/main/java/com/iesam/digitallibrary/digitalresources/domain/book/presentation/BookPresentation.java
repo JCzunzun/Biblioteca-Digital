@@ -75,8 +75,8 @@ public class BookPresentation {
         deleteBookUseCase.execute(id);
     }
     private static void modifiedBook(Book book){
-        ModifiedBookUseCase modifiedBookUseCase= new ModifiedBookUseCase(new BookDataRepository(new BookFileLocalDataSource()));
-        modifiedBookUseCase.execute(book);
+        ModifyBookUseCase modifyBookUseCase = new ModifyBookUseCase(new BookDataRepository(new BookFileLocalDataSource()));
+        modifyBookUseCase.execute(book);
     }
     private static void getsBooks(){
         GetsBooksUseCase getsBooksUseCase= new GetsBooksUseCase(new BookDataRepository(new BookFileLocalDataSource()));
