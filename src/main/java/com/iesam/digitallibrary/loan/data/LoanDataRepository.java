@@ -36,4 +36,9 @@ public class LoanDataRepository implements LoanRepository {
         loanLocalDataSource.endedLoan(id);
     }
 
+    @Override
+    public ArrayList<Loan> obtainLoans() {
+        return loanLocalDataSource.obtainLoans();
+    }
+
 }

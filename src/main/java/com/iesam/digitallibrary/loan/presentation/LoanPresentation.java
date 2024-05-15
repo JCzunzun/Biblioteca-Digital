@@ -19,7 +19,8 @@ public class LoanPresentation {
                 "\n2: Eliminar un prestamo" +
                 "\n3: Obtener listado de prestamos pendientes" +
                 "\n4: Obtener listado de prestamos finalizados" +
-                "\n5: Finalizar un prestamo");
+                "\n5: Obtener un listado de todos los prestamos" +
+                "\n6: Finalizar un prestamo");
         int opcion= sc.nextInt();
         switch (opcion){
             case 0:
@@ -44,8 +45,10 @@ public class LoanPresentation {
             case 4:
                 obtainFinishedLoans();
                 break;
-
             case 5:
+                obtainLoans();
+                break;
+            case 6:
                 System.out.println("Digite el id del prestamo a finalizar");
                 String idFinish=sc.next();
                 endedLoan(idFinish);
@@ -80,5 +83,13 @@ public class LoanPresentation {
         EndedLoanUseCase endedLoanUseCase= new EndedLoanUseCase(new LoanDataRepository(new LoanFileLocalDataSource()));
         endedLoanUseCase.execute(id);
 
+    }
+    private static void obtainLoans(){
+        ArrayList<Loan> loans;
+        GetLoansUseCase getLoansUseCase= new GetLoansUseCase(new LoanDataRepository(new LoanFileLocalDataSource()));
+        loans=getLoansUseCase.execute();
+        for(Loan loan: loans){
+            System.out.println(loan);
+        }
     }
 }

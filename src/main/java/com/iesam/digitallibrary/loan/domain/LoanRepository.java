@@ -8,4 +8,5 @@ public interface LoanRepository {
     ArrayList<Loan> obtainLoansPending();
     ArrayList<Loan> obtainFinishedLoans();
     void endedLoan(String id);
+    ArrayList<Loan> obtainLoans();
 }
