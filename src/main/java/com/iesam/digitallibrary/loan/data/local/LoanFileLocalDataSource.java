@@ -128,4 +128,26 @@ public class LoanFileLocalDataSource implements LoanLocalDataSource {
             }
         }
     }
+
+    @Override
+    public ArrayList<Loan> obtainLoans() {
+        ArrayList<Loan> loans = new ArrayList<>();
+        try {
+            File ficheroLoan = new File(nameFile);
+            if (!ficheroLoan.exists()) {
+                ficheroLoan.createNewFile();
+            }
+            Scanner scanner = new Scanner(ficheroLoan);
+            while (scanner.hasNextLine()) {
+                String data = scanner.nextLine();
+                Loan loan = gson.fromJson(data, Loan.class);
+                loans.add(loan);
+            }
+            return loans;
+        } catch (IOException e) {
+            System.out.println("Ha ocurrido un error al obtener el listado de usuarios");
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
