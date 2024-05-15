@@ -19,11 +19,7 @@ public class LoanFileLocalDataSource implements LoanLocalDataSource {
 
     @Override
     public void createLoan(Loan loan) {
-        loan.setStatusLoan("Pending");
-        LocalDate localDate=LocalDate.now();
-        loan.setStarLoanDate(Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
-        LocalDate daysplus=localDate.plusDays(31);
-        loan.setEndLoanDate(Date.from(daysplus.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+
         try {
             File ficheroLoan = new File(nameFile);
             if (!ficheroLoan.exists()) {
