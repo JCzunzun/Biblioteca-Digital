@@ -31,25 +31,8 @@ public class LoanPresentation {
                 String userPrestamos= sc.next();
                 System.out.println("Digite el id del recurso a prestar");
                 String recursoPrestamo= sc.next();
-                System.out.println("Estado del prestamo");
-                String estadoPrestamo=sc.next();
-                try {
-                    System.out.println("Fecha de inicio del préstamo (DD/MM/YYYY):");
-                    Date inicioPrestamo = formato.parse(sc.next());
-                    System.out.println("Fecha máxima de entrega del préstamo (DD/MM/YYYY):");
-                    Date finPrestamo = formato.parse(sc.next());
-                    Calendar calFin = Calendar.getInstance();
-                    calFin.setTime(finPrestamo);
-                    calFin.set(Calendar.HOUR_OF_DAY, 23);
-                    calFin.set(Calendar.MINUTE, 59);
-                    calFin.set(Calendar.SECOND, 59);
-                    calFin.set(Calendar.MILLISECOND, 999);
-                    finPrestamo=calFin.getTime();
-                    createLoan(new Loan(idPrestamo, userPrestamos, recursoPrestamo, estadoPrestamo, inicioPrestamo, finPrestamo));
-
-                } catch (ParseException e) {
-                    System.out.println("Error al analizar la fecha. Asegúrate de ingresarla en el formato correcto (DD/MM/YYYY).");
-                }break;
+                createLoan(new Loan(idPrestamo, userPrestamos, recursoPrestamo));
+                break;
             case 2:
                 System.out.println("Digite el identificador del prestamo");
                 String idLoanDelete= sc.next();

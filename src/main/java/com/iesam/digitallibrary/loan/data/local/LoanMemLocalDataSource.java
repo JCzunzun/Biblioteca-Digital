@@ -3,7 +3,9 @@ package com.iesam.digitallibrary.loan.data.local;
 import com.iesam.digitallibrary.loan.domain.Loan;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class LoanMemLocalDataSource implements LoanLocalDataSource{
     ArrayList<Loan> loans= new ArrayList<>();
@@ -16,7 +18,7 @@ public class LoanMemLocalDataSource implements LoanLocalDataSource{
     }
     @Override
     public void createLoan(Loan loan) {
-        loans.add(loan);
+         loans.add(loan);
     }
 
     @Override

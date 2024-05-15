@@ -8,7 +8,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class LoanFileLocalDataSource implements LoanLocalDataSource {
@@ -17,6 +19,7 @@ public class LoanFileLocalDataSource implements LoanLocalDataSource {
 
     @Override
     public void createLoan(Loan loan) {
+
         try {
             File ficheroLoan = new File(nameFile);
             if (!ficheroLoan.exists()) {
