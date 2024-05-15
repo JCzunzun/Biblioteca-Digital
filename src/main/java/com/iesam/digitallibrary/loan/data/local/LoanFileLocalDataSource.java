@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class LoanFileLocalDataSource implements LoanLocalDataSource {
@@ -112,5 +113,19 @@ public class LoanFileLocalDataSource implements LoanLocalDataSource {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public void endedLoan(String id) {
+        ArrayList<Loan> loansPending = obtainLoansPending();
+        Loan loanFind;
+        for (Loan loan : loansPending) {
+            if (Objects.equals(loan.getIdLoan(), id)) {
+                loanFind= loan;
+                deleteLoan(loanFind.getIdLoan());
+                loanFind.setStatusLoan("Finished");
+                createLoan(loanFind);
+            }
+        }
     }
 }

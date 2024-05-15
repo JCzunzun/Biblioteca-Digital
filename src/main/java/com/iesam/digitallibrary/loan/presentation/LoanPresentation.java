@@ -18,13 +18,13 @@ public class LoanPresentation {
                 "\n1: Crear prestamos" +
                 "\n2: Eliminar un prestamo" +
                 "\n3: Obtener listado de prestamos pendientes" +
-                "\n4: Obtener listado de prestamos finalizados");
+                "\n4: Obtener listado de prestamos finalizados" +
+                "\n5: Finalizar un prestamo");
         int opcion= sc.nextInt();
         switch (opcion){
             case 0:
                 break;
             case 1:
-                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                 System.out.println("Digite el id del prestamo");
                 String idPrestamo= sc.next();
                 System.out.println("Digite el id del usuario a quien se hara el prestamo");
@@ -43,6 +43,14 @@ public class LoanPresentation {
                 break;
             case 4:
                 obtainFinishedLoans();
+                break;
+
+            case 5:
+                System.out.println("Digite el id del prestamo a finalizar");
+                String idFinish=sc.next();
+                endedLoan(idFinish);
+                break;
+            default:
                 break;
         }
     }
@@ -67,5 +75,10 @@ public class LoanPresentation {
         for(Loan loan:loans){
             System.out.println(loan);
         }
+    }
+    private static void endedLoan(String id){
+        EndedLoanUseCase endedLoanUseCase= new EndedLoanUseCase(new LoanDataRepository(new LoanFileLocalDataSource()));
+        endedLoanUseCase.execute(id);
+
     }
 }

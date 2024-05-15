@@ -30,4 +30,10 @@ public class LoanDataRepository implements LoanRepository {
     public ArrayList<Loan> obtainFinishedLoans() {
         return loanLocalDataSource.obtainFinishedLoans();
     }
+
+    @Override
+    public void endedLoan(String id) {
+        loanLocalDataSource.endedLoan(id);
+    }
+
 }
