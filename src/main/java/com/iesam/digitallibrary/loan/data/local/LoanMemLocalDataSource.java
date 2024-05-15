@@ -70,4 +70,14 @@ public class LoanMemLocalDataSource implements LoanLocalDataSource{
     public ArrayList<Loan> obtainLoans() {
         return loans;
     }
+
+    @Override
+    public Loan obtainSpecifiedLoan(String id) {
+        for(Loan loan:loans){
+            if(loan.getIdLoan().equals(id)){
+                return loan;
+            }
+        }
+        return null;
+    }
 }

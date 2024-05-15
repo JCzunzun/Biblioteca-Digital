@@ -20,7 +20,8 @@ public class LoanPresentation {
                 "\n3: Obtener listado de prestamos pendientes" +
                 "\n4: Obtener listado de prestamos finalizados" +
                 "\n5: Obtener un listado de todos los prestamos" +
-                "\n6: Finalizar un prestamo");
+                "\n6: Finalizar un prestamo" +
+                "\n7: Obtener informacion de un prestamo");
         int opcion= sc.nextInt();
         switch (opcion){
             case 0:
@@ -53,6 +54,11 @@ public class LoanPresentation {
                 String idFinish=sc.next();
                 endedLoan(idFinish);
                 break;
+            case 7:
+                System.out.println("Digite el id del prestamo a visualizar");
+                String idVisual= sc.next();;
+                obtainLoan(idVisual);
+                break;
             default:
                 break;
         }
@@ -69,14 +75,14 @@ public class LoanPresentation {
         GetLoansPendingUseCase getLoansPendingUseCase = new GetLoansPendingUseCase(new LoanDataRepository(new LoanFileLocalDataSource()));
         ArrayList<Loan> loans=getLoansPendingUseCase.execute();
         for(Loan loan:loans){
-            System.out.println(loan);
+            System.out.println(loan.toString());
         }
     }
     private static void obtainFinishedLoans(){
         GetFinishedLoansUseCase getFinishedLoansUseCase= new GetFinishedLoansUseCase(new LoanDataRepository(new LoanFileLocalDataSource()));
         ArrayList<Loan> loans=getFinishedLoansUseCase.execute();
         for(Loan loan:loans){
-            System.out.println(loan);
+            System.out.println(loan.toString());
         }
     }
     private static void endedLoan(String id){
@@ -85,11 +91,16 @@ public class LoanPresentation {
 
     }
     private static void obtainLoans(){
-        ArrayList<Loan> loans;
         GetLoansUseCase getLoansUseCase= new GetLoansUseCase(new LoanDataRepository(new LoanFileLocalDataSource()));
-        loans=getLoansUseCase.execute();
+        ArrayList<Loan> loans=getLoansUseCase.execute();
         for(Loan loan: loans){
-            System.out.println(loan);
+            System.out.println(loan.toString());
         }
+    }
+    private static void obtainLoan(String id){
+        GetLoanUseCase getLoanUseCase= new GetLoanUseCase(new LoanDataRepository(new LoanFileLocalDataSource()));
+        Loan loan=getLoanUseCase.execute(id);
+        System.out.println(loan.toString());
+
     }
 }

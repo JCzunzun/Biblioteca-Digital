@@ -2,15 +2,11 @@ package com.iesam.digitallibrary.loan.data.local;
 
 import com.google.gson.Gson;
 import com.iesam.digitallibrary.loan.domain.Loan;
-import com.iesam.digitallibrary.user.domain.User;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -147,6 +143,17 @@ public class LoanFileLocalDataSource implements LoanLocalDataSource {
         } catch (IOException e) {
             System.out.println("Ha ocurrido un error al obtener el listado de usuarios");
             e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Loan obtainSpecifiedLoan(String id) {
+        ArrayList <Loan> loans= obtainLoans();
+        for(Loan loan:loans){
+            if(loan.getIdLoan().equals(id)){
+                return loan;
+            }
         }
         return null;
     }

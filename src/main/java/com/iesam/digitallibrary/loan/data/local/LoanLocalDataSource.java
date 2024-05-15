@@ -11,4 +11,5 @@ public interface LoanLocalDataSource {
     ArrayList<Loan> obtainFinishedLoans();
     void endedLoan(String id);
     ArrayList<Loan> obtainLoans();
+    Loan obtainSpecifiedLoan(String id);
 }
