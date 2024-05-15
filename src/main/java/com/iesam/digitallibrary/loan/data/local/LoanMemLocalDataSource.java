@@ -51,4 +51,9 @@ public class LoanMemLocalDataSource implements LoanLocalDataSource{
         }
         return loansFinished;
     }
+
+    @Override
+    public void endedLoan(String id) {
+
+    }
 }
