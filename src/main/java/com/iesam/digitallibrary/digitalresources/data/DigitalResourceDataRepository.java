@@ -16,4 +16,9 @@ public class DigitalResourceDataRepository implements DigitalResourceRepository 
     public ArrayList<DigitalResource> getAllResources() {
         return digitalResourceLocalDataSource.getAllResources();
     }
+
+    @Override
+    public DigitalResource getDigitalResource(String id) {
+        return digitalResourceLocalDataSource.getDigitalResource(id);
+    }
 }

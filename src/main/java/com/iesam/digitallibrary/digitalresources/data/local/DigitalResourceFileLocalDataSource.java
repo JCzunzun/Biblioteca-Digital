@@ -55,5 +55,16 @@ public class DigitalResourceFileLocalDataSource implements DigitalResourceLocalD
         return null;
     }
 
+    @Override
+    public DigitalResource getDigitalResource(String id) {
+        ArrayList<DigitalResource> resources= getAllResources();
+        for(DigitalResource resource: resources){
+            if(resource.getId().equals(id)){
+                return resource;
+            }
+        }
+        return null;
+    }
+
 
 }
