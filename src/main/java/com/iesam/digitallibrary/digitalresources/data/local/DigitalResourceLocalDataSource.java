@@ -7,4 +7,5 @@ import java.util.ArrayList;
 public interface DigitalResourceLocalDataSource {
     void createDigitalResource(DigitalResource digitalResource);
     ArrayList<DigitalResource> getAllResources();
+    DigitalResource getDigitalResource(String id);
 }
