@@ -1,6 +1,8 @@
 package com.iesam.digitallibrary.digitalresources.domain.book.data.local;
 
 import com.google.gson.Gson;
+import com.iesam.digitallibrary.digitalresources.data.local.DigitalResourceFileLocalDataSource;
+import com.iesam.digitallibrary.digitalresources.data.local.DigitalResourceLocalDataSource;
 import com.iesam.digitallibrary.digitalresources.domain.book.domain.Book;
 
 import java.io.File;
@@ -10,23 +12,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BookFileLocalDataSource implements BookLocalDataSource{
-    private String nameFile="books.txt";
+    private String nameFile="DigitalResource.txt";
     private Gson gson = new Gson();
+    DigitalResourceLocalDataSource digitalResourceLocalDataSource;
+    public BookFileLocalDataSource(DigitalResourceLocalDataSource digitalResourceLocalDataSource){
+        this.digitalResourceLocalDataSource= digitalResourceLocalDataSource;
+    }
+
     @Override
     public void createBook(Book book) {
-        try {
-            File ficheroUSer = new File(nameFile);
-            if (!ficheroUSer.exists()) {
-                ficheroUSer.createNewFile();
-            }
-            FileWriter myWriter = new FileWriter(nameFile,true);
-            myWriter.write(gson.toJson(book)+System.lineSeparator());
-            myWriter.close();
-            System.out.println("Se logro guardar el usuario");
-        } catch (IOException e) {
-            System.out.println("Ha ocurrido un error al guardar la informacion");
-            e.printStackTrace();
-        }
+        digitalResourceLocalDataSource.createDigitalResource(book);
     }
 
     @Override
@@ -76,7 +71,10 @@ public class BookFileLocalDataSource implements BookLocalDataSource{
             while (scanner.hasNextLine()) {
                 String data = scanner.nextLine();
                 Book book = gson.fromJson(data, Book.class);
-                books.add(book);
+                if(book.getType().equals("Libro")){
+                    books.add(book);
+                }
+
             }
             return books;
         }catch (IOException e){

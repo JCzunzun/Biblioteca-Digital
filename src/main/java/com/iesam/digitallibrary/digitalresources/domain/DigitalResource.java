@@ -5,13 +5,16 @@ public class DigitalResource {
     public final String name;
     public final String stateOfDeterioration;
     public final String autor;
-    public final String type;
+    private String type;
 
-    public DigitalResource(String id, String name, String stateOfDeterioration, String autor, String type) {
+    public DigitalResource(String id, String name, String stateOfDeterioration, String autor) {
         this.id = id;
         this.name = name;
         this.stateOfDeterioration = stateOfDeterioration;
         this.autor = autor;
+    }
+
+    public void setType(String type) {
         this.type = type;
     }
 

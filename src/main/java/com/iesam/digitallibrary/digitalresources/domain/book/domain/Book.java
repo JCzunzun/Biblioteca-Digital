@@ -7,8 +7,8 @@ public class Book extends DigitalResource {
     public final String description;
     public final String gender;
 
-    public Book(String id, String name, String stateOfDeterioration, String autor,String type, String numberOfPages, String description, String gender) {
-        super(id, name, stateOfDeterioration, autor,type);
+    public Book(String id, String name, String stateOfDeterioration, String autor, String numberOfPages, String description, String gender) {
+        super(id, name, stateOfDeterioration, autor);
         this.numberOfPages = numberOfPages;
         this.description = description;
         this.gender = gender;
@@ -29,13 +29,13 @@ public class Book extends DigitalResource {
     @Override
     public String toString() {
         return "Book{" +
-                "numberOfPages='" + numberOfPages + '\'' +
-                ", description='" + description + '\'' +
-                ", gender='" + gender + '\'' +
-                ", id='" + id + '\'' +
-                ", name='" + name + '\'' +
+                "autor='" + autor + '\'' +
                 ", stateOfDeterioration='" + stateOfDeterioration + '\'' +
-                ", autor='" + autor + '\'' +
+                ", name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                ", gender='" + gender + '\'' +
+                ", description='" + description + '\'' +
+                ", numberOfPages='" + numberOfPages + '\'' +
                 '}';
     }
 }

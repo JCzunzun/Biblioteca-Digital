@@ -2,10 +2,13 @@ package com.iesam.digitallibrary.digitalresources.data.local;
 
 import com.google.gson.Gson;
 import com.iesam.digitallibrary.digitalresources.domain.DigitalResource;
+import com.iesam.digitallibrary.digitalresources.domain.book.domain.Book;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class DigitalResourceFileLocalDataSource implements DigitalResourceLocalDataSource{
     private String nameFile="DigitalResource.txt";
@@ -26,4 +29,6 @@ public class DigitalResourceFileLocalDataSource implements DigitalResourceLocalD
             e.printStackTrace();
         }
     }
+
+
 }

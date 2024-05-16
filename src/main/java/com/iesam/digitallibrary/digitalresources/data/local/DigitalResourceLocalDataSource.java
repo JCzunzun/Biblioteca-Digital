@@ -4,4 +4,5 @@ import com.iesam.digitallibrary.digitalresources.domain.DigitalResource;
 
 public interface DigitalResourceLocalDataSource {
     void createDigitalResource(DigitalResource digitalResource);
+
 }
