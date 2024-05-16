@@ -37,4 +37,14 @@ public class BookMemLocalDataSource implements BookLocalDataSource{
     public ArrayList<Book> getsBooks() {
         return books;
     }
+
+    @Override
+    public Book obtainBook(String id) {
+        for(Book book: books){
+            if(book.getId().equals(id)){
+                return book;
+            }
+        }
+        return null;
+    }
 }

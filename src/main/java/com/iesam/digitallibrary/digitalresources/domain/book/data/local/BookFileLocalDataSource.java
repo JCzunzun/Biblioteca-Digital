@@ -84,4 +84,15 @@ public class BookFileLocalDataSource implements BookLocalDataSource{
         return null;
     }
 
+    @Override
+    public Book obtainBook(String id) {
+        ArrayList<Book> books= getsBooks();
+        for(Book book:books){
+            if(book.getId().equals(id)){
+                return book;
+            }
+        }
+        return null;
+    }
+
 }

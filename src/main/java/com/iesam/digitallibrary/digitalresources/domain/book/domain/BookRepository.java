@@ -7,4 +7,5 @@ public interface BookRepository {
     void deleteBook(String id);
     void modifiedBook(Book book);
     ArrayList<Book> getsBooks();
+    Book obtainBook(String id);
 }
