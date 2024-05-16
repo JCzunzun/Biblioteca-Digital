@@ -29,10 +29,8 @@ class GetLoansPendingUseCaseTest {
     @Test
     public void siReciboUnaListaLaCompruebo(){
         //Given
-        Loan loan1= new Loan("1","1","1");
-        loan1.setStatusLoan("Pending");
+        Loan loan1= new Loan("1","1","1");;
         Loan loan2= new Loan("2","2","2");
-        loan2.setStatusLoan("Pending");
         ArrayList<Loan> loansExpected= new ArrayList<>();
         loansExpected.add(loan1);
         loansExpected.add(loan2);
