@@ -26,9 +26,10 @@ class EndedLoanUseCaseTest {
     }
 
     @Test
-    public void meDanUnIdYModificoElPrestamoDelId(){
+    public void meDanUnIdYModificoElPrestamo(){
         //Given
         String idModi="2";
+        Loan loan= new Loan("a","1","r1","a","a");
 
         //When
         endedLoanUseCase.execute(idModi);

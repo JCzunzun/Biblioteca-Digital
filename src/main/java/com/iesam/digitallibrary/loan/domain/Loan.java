@@ -4,6 +4,7 @@ import com.iesam.digitallibrary.digitalresources.domain.DigitalResource;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 
@@ -11,18 +12,26 @@ public class Loan {
     public final String idLoan;
     public final String idUser;
     public final String idDigitalResource;
-    private String statusLoan;
-    private Date starLoanDate;
-    private Date endLoanDate;
+    private final String statusLoan;
+    private final String starLoanDate;
+    private final String endLoanDate;
 
     public Loan(String idLoan, String idUser, String idDigitalResource) {
         this.idLoan = idLoan;
         this.idUser = idUser;
         this.idDigitalResource = idDigitalResource;
+        this.statusLoan = "Pending";
+        this.starLoanDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));;
+        this.endLoanDate = LocalDate.now().plusDays(21).format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));;
     }
 
-    public void setStatusLoan(String statusLoan) {
-        this.statusLoan = statusLoan;
+    public Loan(String idLoan, String idUser, String idDigitalResource, String starLoanDate, String endLoanDate) {
+        this.idLoan = idLoan;
+        this.idUser = idUser;
+        this.idDigitalResource = idDigitalResource;
+        this.statusLoan = "Finished";
+        this.starLoanDate = starLoanDate;
+        this.endLoanDate = endLoanDate;
     }
 
     public String getIdLoan() {
@@ -41,16 +50,12 @@ public class Loan {
         return statusLoan;
     }
 
-    public Date getEndLoanDate() {
+    public String getEndLoanDate() {
         return endLoanDate;
     }
 
-    public void setEndLoanDate(Date endLoanDate) {
-        this.endLoanDate = endLoanDate;
-    }
-
-    public void setStarLoanDate(Date starLoanDate) {
-        this.starLoanDate = starLoanDate;
+    public String getStarLoanDate() {
+        return starLoanDate;
     }
 
     @Override

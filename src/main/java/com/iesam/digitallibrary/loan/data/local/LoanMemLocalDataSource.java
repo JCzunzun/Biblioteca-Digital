@@ -54,16 +54,10 @@ public class LoanMemLocalDataSource implements LoanLocalDataSource{
 
     @Override
     public void endedLoan(String id) {
-        ArrayList<Loan> loanPending=obtainLoansPending();
-        Loan loanEnded;
-        for(Loan loan:loanPending){
-            if(loan.getIdLoan().equals(id)){
-                loanEnded=loan;
-                loanEnded.setStatusLoan("Finished");
-                deleteLoan(loanEnded.getIdLoan());
-                createLoan(loanEnded);
-            }
-        }
+        Loan loan= obtainSpecifiedLoan(id);
+        deleteLoan(id);
+        loan=new Loan(loan.getIdLoan(),loan.getIdUser(), loan.getIdDigitalResource(),"","");
+        createLoan(loan);
     }
 
     @Override

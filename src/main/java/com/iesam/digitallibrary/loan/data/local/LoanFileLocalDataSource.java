@@ -113,16 +113,10 @@ public class LoanFileLocalDataSource implements LoanLocalDataSource {
 
     @Override
     public void endedLoan(String id) {
-        ArrayList<Loan> loansPending = obtainLoansPending();
-        Loan loanFind;
-        for (Loan loan : loansPending) {
-            if (Objects.equals(loan.getIdLoan(), id)) {
-                loanFind= loan;
-                deleteLoan(loanFind.getIdLoan());
-                loanFind.setStatusLoan("Finished");
-                createLoan(loanFind);
-            }
-        }
+        Loan loan= obtainSpecifiedLoan(id);
+        deleteLoan(id);
+        loan= new Loan(loan.getIdLoan(),loan.getIdUser(), loan.getIdDigitalResource(),"","");
+        createLoan(loan);
     }
 
     @Override

@@ -28,7 +28,6 @@ class GetLoanUseCaseTest {
     public void siElIdPrestamoSiExisteLoDevuelvo(){
         //Given
         Loan loanExpected= new Loan("1","1","1");
-        loanExpected.setStatusLoan("Finished");
         Mockito.when(loanRepository.obtainSpecifiedLoan("1")).thenReturn(loanExpected);
 
         //When
