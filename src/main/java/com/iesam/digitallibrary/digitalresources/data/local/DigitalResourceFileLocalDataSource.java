@@ -30,5 +30,30 @@ public class DigitalResourceFileLocalDataSource implements DigitalResourceLocalD
         }
     }
 
+    @Override
+    public ArrayList<DigitalResource> getAllResources() {
+        ArrayList<DigitalResource> resources = new ArrayList<>();
+        try {
+            File ficheroResources = new File(nameFile);
+            if (!ficheroResources.exists()) {
+                ficheroResources.createNewFile();
+            }
+            Scanner scanner = new Scanner(ficheroResources);
+            while (scanner.hasNextLine()) {
+                String data = scanner.nextLine();
+                DigitalResource resource = gson.fromJson(data, DigitalResource.class);
+                if(resource.getType().equals("Libro")){
+                    resources.add(resource);
+                }
+
+            }
+            return resources;
+        }catch (IOException e){
+            System.out.println("Ha ocurrido un error al obtener el listado de usuarios");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 }

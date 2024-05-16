@@ -64,5 +64,6 @@ class GetLoansPendingUseCaseTest {
 
         //Then
         Assertions.assertNull(loansReceived);
+        Mockito.verify(loanRepository, Mockito.times(1)).obtainLoansPending();
     }
 }

@@ -34,6 +34,8 @@ class GetUserUseCaseTest {
         User userReceived=getUserUseCase.execute("1");
 
         //Then
+
+        Mockito.verify(userRepository, Mockito.times(1)).getUser("1");
         Assertions.assertEquals(userReceived.id,"1");
         Assertions.assertEquals(userReceived.dni,"00000000y");
         Assertions.assertEquals(userReceived.name,"camilo");
@@ -53,6 +55,7 @@ class GetUserUseCaseTest {
         User userReceived=userRepository.getUser(userDniNotValid);
 
         //Then
+        Mockito.verify(userRepository, Mockito.times(1)).getUser(userDniNotValid);
         Assertions.assertNull(userReceived);
     }
 

@@ -43,6 +43,8 @@ class GetFinishedLoansUseCaseTest {
         ArrayList<Loan> loansReceived=getFinishedLoansUseCase.execute();
 
         //Then
+        Mockito.verify(loanRepository, Mockito.times(1)).obtainFinishedLoans();
+
         Assertions.assertEquals(loansExpected.size(),loansReceived.size());
 
         Assertions.assertEquals(loansReceived.get(0).getIdLoan(),"1");

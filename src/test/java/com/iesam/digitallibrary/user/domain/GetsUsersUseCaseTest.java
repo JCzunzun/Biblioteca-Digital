@@ -36,6 +36,8 @@ class GetsUsersUseCaseTest {
         //When
         ArrayList<User> usersReceived=getsUsersUseCase.execute();
         //Then
+        Mockito.verify(userRepository,Mockito.times(1)).getUsers();
+
         Assertions.assertEquals(usersReceived.size(),userSimnulation.size());
 
         Assertions.assertEquals(usersReceived.get(0).id,"1");
@@ -62,6 +64,7 @@ class GetsUsersUseCaseTest {
         ArrayList<User> userReceived= getsUsersUseCase.execute();
 
         //Then
+        Mockito.verify(userRepository,Mockito.times(1)).getUsers();
         Assertions.assertNull(userReceived);
     }
 
