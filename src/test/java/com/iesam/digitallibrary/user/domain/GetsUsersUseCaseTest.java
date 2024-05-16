@@ -27,7 +27,7 @@ class GetsUsersUseCaseTest {
         getsUsersUseCase=null;
     }
     @Test
-    public void comprueboSiMeDevuelvenUnaLista(){
+    public void comprueboSiMeDevuelvenUnaListaCorrecta(){
         //Given
         ArrayList<User> userSimnulation= new ArrayList<>();
         userSimnulation.add(new User("1","a","juan","juan@juan","617929803","Calle",""));
