@@ -35,8 +35,7 @@ public class BookPresentation {
                 String description=sc.next();
                 System.out.println("Genero del libro");
                 String gender= sc.next();
-                String tipo="Libro";
-                createBook(new Book(id,name,stateOfDeterioration,autor,tipo,numberOfPages,description,gender));
+                createBook(new Book(id,name,stateOfDeterioration,autor,numberOfPages,description,gender));
                 break;
 
             case 2:
@@ -60,8 +59,7 @@ public class BookPresentation {
                 String descriptionUpdate=sc.next();
                 System.out.println("Genero del libro");
                 String genderUpdate= sc.next();
-                String tipoUpdate="Libro";
-                modifiedBook(new Book(idUpdate,nameUpdate,stateOfDeteriorationUpdate,autorUpdate,tipoUpdate,numberOfPagesUpdate,descriptionUpdate,genderUpdate));
+                modifiedBook(new Book(idUpdate,nameUpdate,stateOfDeteriorationUpdate,autorUpdate,numberOfPagesUpdate,descriptionUpdate,genderUpdate));
                 break;
 
             case 4:
@@ -70,19 +68,19 @@ public class BookPresentation {
         }
     }
     private static void createBook(Book book){
-        CreateBookUseCase createBookUseCase = new CreateBookUseCase(new BookDataRepository(new DigitalResourceFileLocalDataSource()));
+        CreateBookUseCase createBookUseCase = new CreateBookUseCase(new BookDataRepository(new BookFileLocalDataSource(new DigitalResourceFileLocalDataSource())));
         createBookUseCase.execute(book);
     }
     private static void deleteBook(String id){
-        DeleteBookUseCase deleteBookUseCase= new DeleteBookUseCase(new BookDataRepository(new DigitalResourceFileLocalDataSource()));
+        DeleteBookUseCase deleteBookUseCase= new DeleteBookUseCase(new BookDataRepository(new BookFileLocalDataSource(new DigitalResourceFileLocalDataSource())));
         deleteBookUseCase.execute(id);
     }
     private static void modifiedBook(Book book){
-        ModifyBookUseCase modifyBookUseCase = new ModifyBookUseCase(new BookDataRepository(new DigitalResourceFileLocalDataSource()));
+        ModifyBookUseCase modifyBookUseCase = new ModifyBookUseCase(new BookDataRepository(new BookFileLocalDataSource(new DigitalResourceFileLocalDataSource())));
         modifyBookUseCase.execute(book);
     }
     private static void getsBooks(){
-        GetsBooksUseCase getsBooksUseCase= new GetsBooksUseCase(new BookDataRepository(new DigitalResourceFileLocalDataSource()));
+        GetsBooksUseCase getsBooksUseCase= new GetsBooksUseCase(new BookDataRepository(new BookFileLocalDataSource(new DigitalResourceFileLocalDataSource())));
         ArrayList <Book> books= getsBooksUseCase.execute();
         for(Book book:books){
             System.out.println(book);
