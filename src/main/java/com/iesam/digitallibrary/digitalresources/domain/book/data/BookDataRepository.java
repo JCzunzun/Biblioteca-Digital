@@ -31,4 +31,9 @@ public class BookDataRepository implements BookRepository {
     public ArrayList<Book> getsBooks() {
         return bookLocalDataSource.getsBooks();
     }
+
+    @Override
+    public Book obtainBook(String id) {
+        return bookLocalDataSource.obtainBook(id);
+    }
 }

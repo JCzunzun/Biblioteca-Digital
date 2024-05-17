@@ -9,13 +9,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BookPresentation {
+    private static Scanner sc= new Scanner(System.in);
     public static void menuBook(){
-        Scanner sc= new Scanner(System.in);
+
         System.out.println("0: Salir " +
                 "\n1: Crear Libro " +
                 "\n2: Eliminar un libro" +
                 "\n3: Modificar un libro" +
-                "\n4: Obtener un listado de los libros");
+                "\n4: Obtener un listado de los libros" +
+                "\n5: Obtener un libro especifico");
         int opcion= sc.nextInt();
         switch (opcion){
             case 0:
@@ -65,6 +67,9 @@ public class BookPresentation {
             case 4:
                 getsBooks();
                 break;
+            case 5:
+                getBook();
+
         }
     }
     private static void createBook(Book book){
@@ -85,5 +90,12 @@ public class BookPresentation {
         for(Book book:books){
             System.out.println(book);
         }
+    }
+    private static void getBook(){
+        System.out.println("Digite el id del libro a visualizar");
+        String id=sc.next();
+        GetBookUseCase getBookUseCase= new GetBookUseCase(new BookDataRepository(new BookFileLocalDataSource(new DigitalResourceFileLocalDataSource())));
+        Book book= getBookUseCase.execute(id);
+        System.out.println(book.toString());
     }
 }
