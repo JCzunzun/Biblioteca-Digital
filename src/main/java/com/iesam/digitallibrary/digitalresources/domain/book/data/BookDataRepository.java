@@ -12,6 +12,7 @@ public class BookDataRepository implements BookRepository {
     public BookDataRepository(BookLocalDataSource bookLocalDataSource){
         this.bookLocalDataSource= bookLocalDataSource;
     }
+
     @Override
     public void createBook(Book book) {
         bookLocalDataSource.createBook(book);

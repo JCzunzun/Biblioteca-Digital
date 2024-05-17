@@ -2,6 +2,7 @@ package com.iesam.digitallibrary.user.presentation;
 
 import com.iesam.digitallibrary.user.data.UserDataRepository;
 import com.iesam.digitallibrary.user.data.local.UserFileLocalDataSource;
+import com.iesam.digitallibrary.user.data.local.UserMemLocalDataSource;
 import com.iesam.digitallibrary.user.domain.*;
 
 import java.util.ArrayList;
@@ -73,7 +74,7 @@ public class UserPresentation {
     }
 
     private static void createUser(User user) {
-        CreateUserUseCase createUserUseCase = new CreateUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
+        CreateUserUseCase createUserUseCase = new CreateUserUseCase(new UserDataRepository(new UserFileLocalDataSource(),new UserMemLocalDataSource()));
         createUserUseCase.execute(user);
     }
 
@@ -88,7 +89,7 @@ public class UserPresentation {
     }
 
     private static void getsUsers() {
-        GetsUsersUseCase getsUsersUseCase = new GetsUsersUseCase(new UserDataRepository(new UserFileLocalDataSource()));
+        GetsUsersUseCase getsUsersUseCase = new GetsUsersUseCase(new UserDataRepository(new UserFileLocalDataSource(),new UserMemLocalDataSource()));
         ArrayList<User> users = getsUsersUseCase.execute();
         for (User user : users) {
             System.out.println(user);
@@ -97,7 +98,7 @@ public class UserPresentation {
     }
 
     private static void getUser(String id) {
-        GetUserUseCase getUserUseCase = new GetUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
+        GetUserUseCase getUserUseCase = new GetUserUseCase(new UserDataRepository(new UserFileLocalDataSource(), new UserMemLocalDataSource()));
         User user = getUserUseCase.execute(id);
         System.out.println(user);
     }

@@ -1,6 +1,8 @@
 package com.iesam.digitallibrary.user.data;
 
+import com.iesam.digitallibrary.user.data.local.UserFileLocalDataSource;
 import com.iesam.digitallibrary.user.data.local.UserLocalDataSource;
+import com.iesam.digitallibrary.user.data.local.UserMemLocalDataSource;
 import com.iesam.digitallibrary.user.domain.User;
 import com.iesam.digitallibrary.user.domain.UserRepository;
 
@@ -11,9 +13,16 @@ public class UserDataRepository implements UserRepository {
     public UserDataRepository(UserLocalDataSource userLocalDataSource){
         this.userLocalDataSource = userLocalDataSource;
     }
+    UserFileLocalDataSource userFileLocalDataSource;
+    UserMemLocalDataSource userMemLocalDataSource;
+    public UserDataRepository(UserFileLocalDataSource userFileLocalDataSource, UserMemLocalDataSource userMemLocalDataSource){
+        this.userFileLocalDataSource=userFileLocalDataSource;
+        this.userMemLocalDataSource=userMemLocalDataSource;
+    }
     @Override
     public void createUser(User user) {
-        userLocalDataSource.createUser(user);
+        userFileLocalDataSource.createUser(user);
+        userMemLocalDataSource.createUser(user);
     }
 
     @Override
@@ -28,11 +37,30 @@ public class UserDataRepository implements UserRepository {
 
     @Override
     public ArrayList<User> getUsers() {
-        return userLocalDataSource.getUsers();
+        ArrayList<User> usersMem=userMemLocalDataSource.getUsers();
+        if(!usersMem.isEmpty()){
+            return usersMem;
+        }else {
+            usersMem=userFileLocalDataSource.getUsers();
+            for (User user : usersMem) {
+                userMemLocalDataSource.createUser(user);
+            }
+            return usersMem;
+        }
     }
 
     @Override
     public User getUser(String id) {
-        return userLocalDataSource.getUser(id);
+        User userMem=userMemLocalDataSource.getUser(id);
+
+        if(userMem!=null){
+            return userMem;
+        }
+        else {
+            userMem=userFileLocalDataSource.getUser(id);
+            userMemLocalDataSource.createUser(userMem);
+            return userMem;
+        }
+
     }
 }
