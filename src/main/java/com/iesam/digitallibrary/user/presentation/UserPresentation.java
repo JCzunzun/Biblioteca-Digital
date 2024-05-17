@@ -1,5 +1,6 @@
 package com.iesam.digitallibrary.user.presentation;
 
+import com.iesam.digitallibrary.loan.domain.Loan;
 import com.iesam.digitallibrary.user.data.UserDataRepository;
 import com.iesam.digitallibrary.user.data.local.UserFileLocalDataSource;
 import com.iesam.digitallibrary.user.data.local.UserMemLocalDataSource;
@@ -9,14 +10,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserPresentation {
+    private static Scanner sc = new Scanner(System.in);
     public static void menu() {
-        Scanner sc = new Scanner(System.in);
+
         System.out.println("0: Salir " +
                 "\n1: Crear Usuario " +
                 "\n2: Borrar usuario " +
                 "\n3: Modificar un usuario " +
                 "\n4: Obtener un listado de usuario" +
-                "\n5: Obtener un usuario especifico");
+                "\n5: Obtener un usuario especifico" +
+                "\n6: Obtener los prestamos de un usuario");
         int opcion = sc.nextInt();
         switch (opcion) {
             case 0:
@@ -67,6 +70,9 @@ public class UserPresentation {
                 System.out.println("Digite el id del usuario");
                 String idConsulta = sc.next();
                 getUser(idConsulta);
+                break;
+            case 6:
+                getLoansOfUser();
             default:
                 break;
 
@@ -101,5 +107,14 @@ public class UserPresentation {
         GetUserUseCase getUserUseCase = new GetUserUseCase(new UserDataRepository(new UserFileLocalDataSource(), new UserMemLocalDataSource()));
         User user = getUserUseCase.execute(id);
         System.out.println(user);
+    }
+    private static void getLoansOfUser(){
+        System.out.println("Digite el id del usuario");
+        String id= sc.next();
+        GetLoansOfUserUseCase loansOfUserUseCase= new GetLoansOfUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
+        ArrayList<Loan> loans= loansOfUserUseCase.execute(id);
+        for(Loan loan:loans){
+            System.out.println(loan.toString());
+        }
     }
 }
