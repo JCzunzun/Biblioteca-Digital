@@ -26,7 +26,7 @@ class ModifyUserUseCaseTest {
     @Test
     public void reciboUnUsuarioYLoGuardo(){
         //Given
-        User user= new User("1","2","juan","amigo@amigo","617929803","calle","nada");
+        User user= new User("1","2","juan","amigo@amigo","617929803","calle",null);
         //When
         modifyUserUseCase.execute(user);
         //Then
