@@ -1,5 +1,8 @@
 package com.iesam.digitallibrary.user.domain;
 
+import com.iesam.digitallibrary.user.data.UserDataRepository;
+import com.iesam.digitallibrary.user.data.local.UserFileLocalDataSource;
+import com.iesam.digitallibrary.user.data.local.UserMemLocalDataSource;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,8 +13,11 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+
 @ExtendWith(MockitoExtension.class)
 class GetsUsersUseCaseTest {
     @Mock
@@ -66,6 +72,54 @@ class GetsUsersUseCaseTest {
         //Then
         Mockito.verify(userRepository,Mockito.times(1)).getUsers();
         Assertions.assertNull(userReceived);
+    }
+    @Test
+    public void obtenerUnListadoEnMemoria() {
+        UserMemLocalDataSource memLocalDataSource = mock(UserMemLocalDataSource.class);
+        UserFileLocalDataSource fileLocalDataSource = mock(UserFileLocalDataSource.class);
+
+        UserDataRepository repository = new UserDataRepository(fileLocalDataSource, memLocalDataSource);
+
+        ArrayList<User> usersExpected = new ArrayList<>();
+        Collections.addAll(usersExpected, new User("1", null,null,null,null,null,null),
+                new User("2", null,null,null,null, null,null));
+
+        Mockito.when(memLocalDataSource.getUsers()).thenReturn(usersExpected);
+
+        ArrayList<User> result = repository.getUsers();
+
+        assertEquals(usersExpected.get(0).getId(), "1");
+        assertEquals(usersExpected.get(1).getId(),"2");
+        Mockito.verify(memLocalDataSource, Mockito.times(1)).getUsers();
+        Mockito.verify(fileLocalDataSource, Mockito.never()).getUsers();
+    }
+    @Test
+    public void obtenerUnListadoDelFichero() {
+        //Given
+        UserMemLocalDataSource memLocalDataSource = mock(UserMemLocalDataSource.class);
+        UserFileLocalDataSource fileLocalDataSource = mock(UserFileLocalDataSource.class);
+
+        UserDataRepository repository = new UserDataRepository(fileLocalDataSource, memLocalDataSource);
+        ArrayList<User> usersExpected = new ArrayList<>();
+        Collections.addAll(usersExpected, new User("1", null,null,null,null,null,null),
+                new User("2", null,null,null,null, null,null));
+
+
+
+        Mockito.when(fileLocalDataSource.getUsers()).thenReturn(usersExpected);
+        //When
+        ArrayList<User> usersReceived = repository.getUsers();
+
+        //Then
+        assertEquals(usersReceived.get(0).getId(), "1");
+        assertEquals(usersReceived.get(1).getId(),"2");
+        Mockito.verify(memLocalDataSource, Mockito.times(1)).getUsers();
+        Mockito.verify(fileLocalDataSource, Mockito.times(1)).getUsers();
+        for (User user : usersExpected) {
+            Mockito.verify(memLocalDataSource, Mockito.times(1)).createUser(user);
+        }
+
+
     }
 
 }

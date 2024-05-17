@@ -42,6 +42,9 @@ public class UserDataRepository implements UserRepository {
             return usersMem;
         }else {
             usersMem=userFileLocalDataSource.getUsers();
+            for (User user : usersMem) {
+                userMemLocalDataSource.createUser(user);
+            }
             return usersMem;
         }
     }
@@ -58,5 +61,6 @@ public class UserDataRepository implements UserRepository {
             userMemLocalDataSource.createUser(userMem);
             return userMem;
         }
+
     }
 }
