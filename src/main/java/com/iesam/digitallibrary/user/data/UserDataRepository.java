@@ -1,5 +1,6 @@
 package com.iesam.digitallibrary.user.data;
 
+import com.iesam.digitallibrary.loan.domain.Loan;
 import com.iesam.digitallibrary.user.data.local.UserFileLocalDataSource;
 import com.iesam.digitallibrary.user.data.local.UserLocalDataSource;
 import com.iesam.digitallibrary.user.data.local.UserMemLocalDataSource;
@@ -62,5 +63,10 @@ public class UserDataRepository implements UserRepository {
             return userMem;
         }
 
+    }
+
+    @Override
+    public ArrayList<Loan> getLoansOfUser(String id) {
+        return userLocalDataSource.obtainLoansOfUser(id);
     }
 }

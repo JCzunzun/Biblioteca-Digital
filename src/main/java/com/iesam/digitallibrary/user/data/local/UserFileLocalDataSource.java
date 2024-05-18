@@ -2,6 +2,11 @@ package com.iesam.digitallibrary.user.data.local;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.iesam.digitallibrary.loan.data.LoanDataRepository;
+import com.iesam.digitallibrary.loan.data.local.LoanFileLocalDataSource;
+import com.iesam.digitallibrary.loan.domain.GetFinishedLoansUseCase;
+import com.iesam.digitallibrary.loan.domain.GetLoansPendingUseCase;
+import com.iesam.digitallibrary.loan.domain.Loan;
 import com.iesam.digitallibrary.user.domain.User;
 
 import java.io.*;
@@ -100,6 +105,26 @@ public class UserFileLocalDataSource implements UserLocalDataSource {
             }
         }
         return null;
+    }
+
+    @Override
+    public ArrayList<Loan> obtainLoansOfUser(String id) {
+        ArrayList<Loan> loans= new ArrayList<>();
+        GetLoansPendingUseCase loansPendingUseCase= new GetLoansPendingUseCase(new LoanDataRepository(new LoanFileLocalDataSource()));
+        ArrayList<Loan> loansPending= loansPendingUseCase.execute();
+        for(Loan loan: loansPending){
+            if(loan.getIdUser().equals(id)){
+                loans.add(loan);
+            }
+        }
+        GetFinishedLoansUseCase finishedLoansUseCase=new GetFinishedLoansUseCase(new LoanDataRepository(new LoanFileLocalDataSource()));
+        ArrayList<Loan> loansFinish=finishedLoansUseCase.execute();
+        for(Loan loan:loansFinish){
+            if(loan.getIdUser().equals(id)){
+                loans.add(loan);
+            }
+        }
+        return loans;
     }
 
 }

@@ -36,8 +36,8 @@ class GetsUsersUseCaseTest {
     public void comprueboSiMeDevuelvenUnaListaCorrecta(){
         //Given
         ArrayList<User> userSimnulation= new ArrayList<>();
-        userSimnulation.add(new User("1","a","juan","juan@juan","617929803","Calle",""));
-        userSimnulation.add(new User("2","b","camilo","camilo@camilo","617853702","Calle",""));
+        userSimnulation.add(new User("1","a","juan","juan@juan","617929803","Calle",null));
+        userSimnulation.add(new User("2","b","camilo","camilo@camilo","617853702","Calle",null));
         Mockito.when(userRepository.getUsers()).thenReturn(userSimnulation);
         //When
         ArrayList<User> usersReceived=getsUsersUseCase.execute();

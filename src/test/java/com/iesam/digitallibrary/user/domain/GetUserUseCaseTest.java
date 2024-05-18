@@ -32,7 +32,7 @@ class GetUserUseCaseTest {
     @Test
     public void pasanUnIdValidoEntoncesDevuelvoUnUser(){
         //Given
-        User userExpected= new User("1","00000000y","camilo","camilo@camilo","620111111","calle","null");
+        User userExpected= new User("1","00000000y","camilo","camilo@camilo","620111111","calle",null);
         Mockito.when(userRepository.getUser("1")).thenReturn(userExpected);
 
         //When

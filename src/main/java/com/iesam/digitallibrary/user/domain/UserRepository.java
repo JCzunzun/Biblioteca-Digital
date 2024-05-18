@@ -1,5 +1,7 @@
 package com.iesam.digitallibrary.user.domain;
 
+import com.iesam.digitallibrary.loan.domain.Loan;
+
 import java.util.ArrayList;
 
 public interface UserRepository {
@@ -12,4 +14,5 @@ public interface UserRepository {
     ArrayList<User> getUsers();
 
     User getUser(String id);
+    ArrayList<Loan> getLoansOfUser(String id);
 }
