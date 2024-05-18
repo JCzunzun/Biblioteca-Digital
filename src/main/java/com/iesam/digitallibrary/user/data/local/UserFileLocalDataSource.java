@@ -109,22 +109,10 @@ public class UserFileLocalDataSource implements UserLocalDataSource {
 
     @Override
     public ArrayList<Loan> obtainLoansOfUser(String id) {
-        ArrayList<Loan> loans= new ArrayList<>();
-        GetLoansPendingUseCase loansPendingUseCase= new GetLoansPendingUseCase(new LoanDataRepository(new LoanFileLocalDataSource()));
-        ArrayList<Loan> loansPending= loansPendingUseCase.execute();
-        for(Loan loan: loansPending){
-            if(loan.getIdUser().equals(id)){
-                loans.add(loan);
-            }
-        }
-        GetFinishedLoansUseCase finishedLoansUseCase=new GetFinishedLoansUseCase(new LoanDataRepository(new LoanFileLocalDataSource()));
-        ArrayList<Loan> loansFinish=finishedLoansUseCase.execute();
-        for(Loan loan:loansFinish){
-            if(loan.getIdUser().equals(id)){
-                loans.add(loan);
-            }
-        }
+        User user= getUser(id);
+        ArrayList<Loan> loans= user.getLoanActives();
         return loans;
+
     }
 
 }
