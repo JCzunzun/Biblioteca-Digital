@@ -20,6 +20,9 @@ public class CreateLoanUseCase {
     public void execute (Loan loan){
         User user= userRepository.getUser(loan.idUser);
         ArrayList<Loan> loans= user.getLoanActives();
+        if(loans==null){
+            loans=new ArrayList<>();
+        }
         loans.add(loan);
         User user1= UserFactory.build(user.getId(),user.getDni(), user.getName(),user.getEmail(),user.getPhone(), user.getAddres(), loans );
         userRepository.modifyUser(user1);

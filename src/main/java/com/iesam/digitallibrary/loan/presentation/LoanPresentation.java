@@ -5,6 +5,8 @@ import com.iesam.digitallibrary.loan.data.local.LoanFileLocalDataSource;
 import com.iesam.digitallibrary.loan.domain.*;
 import com.iesam.digitallibrary.user.data.UserDataRepository;
 import com.iesam.digitallibrary.user.data.local.UserFileLocalDataSource;
+import com.iesam.digitallibrary.user.data.local.UserMemLocalDataSource;
+import com.iesam.digitallibrary.user.domain.GetUserUseCase;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -68,13 +70,14 @@ public class LoanPresentation {
     private static void createLoan (Loan loan){
 
         CreateLoanUseCase createLoanUseCase= new CreateLoanUseCase(new LoanDataRepository(new LoanFileLocalDataSource()),
-                new UserDataRepository(new UserFileLocalDataSource()));
+                new UserDataRepository(new UserFileLocalDataSource(),new UserMemLocalDataSource()));
+
         createLoanUseCase.execute(loan);
     }
     private static void deleteLoan(String id){
         DeleteLoanOfUserUseCase deleteLoanOfUserUseCase= new DeleteLoanOfUserUseCase
                 (new LoanDataRepository(new LoanFileLocalDataSource()),
-                        new UserDataRepository(new UserFileLocalDataSource()));
+                        new UserDataRepository(new UserFileLocalDataSource(),new UserMemLocalDataSource()));
         deleteLoanOfUserUseCase.execute(id);
         DeleteLoanUseCase deleteLoanUseCase= new DeleteLoanUseCase(new LoanDataRepository(new LoanFileLocalDataSource()));
         deleteLoanUseCase.execute(id);

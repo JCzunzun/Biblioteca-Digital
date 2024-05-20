@@ -28,12 +28,15 @@ public class UserDataRepository implements UserRepository {
 
     @Override
     public void deleteUser(String id) {
-        userLocalDataSource.deleteUSer(id);
+        userFileLocalDataSource.deleteUSer(id);
+        userMemLocalDataSource.deleteUSer(id);
     }
 
     @Override
     public void modifyUser(User user) {
-        userLocalDataSource.modifyUser(user);
+
+        userFileLocalDataSource.modifyUser(user);
+        userMemLocalDataSource.modifyUser(user);
     }
 
     @Override
@@ -52,16 +55,13 @@ public class UserDataRepository implements UserRepository {
 
     @Override
     public User getUser(String id) {
-        User userMem=userFileLocalDataSource.getUser(id);
-
-        if(userMem!=null){
-            return userMem;
-        }
-        else {
-            userMem=userFileLocalDataSource.getUser(id);
+        User userMem=userMemLocalDataSource.getUser(id);
+        if(userMem==null) {
+            userMem = userFileLocalDataSource.getUser(id);
             userMemLocalDataSource.createUser(userMem);
             return userMem;
         }
+        return userMem;
 
     }
 
