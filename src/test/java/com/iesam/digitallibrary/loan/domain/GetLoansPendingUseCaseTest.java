@@ -42,14 +42,14 @@ class GetLoansPendingUseCaseTest {
         //Then
         Assertions.assertEquals(loansExpected.size(),loansReceived.size());
 
-        Assertions.assertEquals(loansReceived.get(0).getIdLoan(),"1");
-        Assertions.assertEquals(loansReceived.get(0).getIdUser(),"1");
-        Assertions.assertEquals(loansReceived.get(0).getIdDigitalResource(),"1");
-        Assertions.assertEquals(loansReceived.get(0).getStatusLoan(),"Pending");
-        Assertions.assertEquals(loansReceived.get(1).getIdLoan(),"2");
-        Assertions.assertEquals(loansReceived.get(1).getIdUser(),"2");
-        Assertions.assertEquals(loansReceived.get(1).getIdDigitalResource(),"2");
-        Assertions.assertEquals(loansReceived.get(1).getStatusLoan(),"Pending");
+        Assertions.assertEquals(loansReceived.get(0).idLoan,"1");
+        Assertions.assertEquals(loansReceived.get(0).idUser,"1");
+        Assertions.assertEquals(loansReceived.get(0).idDigitalResource,"1");
+        Assertions.assertEquals(loansReceived.get(0).statusLoan,"Pending");
+        Assertions.assertEquals(loansReceived.get(1).idLoan,"2");
+        Assertions.assertEquals(loansReceived.get(1).idUser,"2");
+        Assertions.assertEquals(loansReceived.get(1).idDigitalResource,"2");
+        Assertions.assertEquals(loansReceived.get(1).statusLoan,"Pending");
     }
 
     @Test

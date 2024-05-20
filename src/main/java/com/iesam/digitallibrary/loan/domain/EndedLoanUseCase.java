@@ -18,16 +18,10 @@ public class EndedLoanUseCase {
         this.loanRepository = loanRepository;
     }
     public void execute(String id){
-        GetUserUseCase getUserUseCase= new GetUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
-        GetLoanUseCase getLoanUseCase= new GetLoanUseCase(new LoanDataRepository(new LoanFileLocalDataSource()));
-        Loan loan= getLoanUseCase.execute(id);
-        User user= getUserUseCase.execute(loan.getIdUser());
-        ArrayList<Loan> loansUser= user.getLoanActives();
-        loansUser.removeIf(loanDelete -> loan.getIdLoan().equals(loanDelete.getIdLoan()));
-        ModifyUserUseCase modifyUserUseCase= new ModifyUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
-        User userModified= new User(user.getId(), user.getDni(), user.getName(),user.getEmail(), user.getPhone(), user.getAddres(),loansUser);
-        modifyUserUseCase.execute(userModified);
-        loanRepository.endedLoan(id);
+        Loan loan= loanRepository.obtainSpecifiedLoan(id);
+        loanRepository.deleteLoan(id);
+        loan= LoanFactory.build(loan.idLoan, loan.idUser, loan.idDigitalResource, loan.starLoanDate, loan.endLoanDate);
+        loanRepository.createLoan(loan);
     }
 
 }

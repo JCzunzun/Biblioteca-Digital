@@ -42,12 +42,12 @@ class GetLoansOfUserUseCaseTest {
         Assertions.assertEquals(loansReceived.size(),loansExpected.size());
         Mockito.verify(userRepository,Mockito.times(1)).getLoansOfUser("001");
 
-        Assertions.assertEquals(loansReceived.get(0).getIdLoan(),"1");
-        Assertions.assertEquals(loansReceived.get(0).getIdUser(),"001");
-        Assertions.assertEquals(loansReceived.get(0).getIdDigitalResource(),"1");
-        Assertions.assertEquals(loansReceived.get(1).getIdLoan(),"2");
-        Assertions.assertEquals(loansReceived.get(1).getIdUser(),"001");
-        Assertions.assertEquals(loansReceived.get(1).getIdDigitalResource(),"2");
+        Assertions.assertEquals(loansReceived.get(0).idLoan,"1");
+        Assertions.assertEquals(loansReceived.get(0).idUser,"001");
+        Assertions.assertEquals(loansReceived.get(0).idDigitalResource,"1");
+        Assertions.assertEquals(loansReceived.get(1).idLoan,"2");
+        Assertions.assertEquals(loansReceived.get(1).idUser,"001");
+        Assertions.assertEquals(loansReceived.get(1).idDigitalResource,"2");
     }
     @Test
     public void siElIdNoCoincideDevuelvoListaNull(){

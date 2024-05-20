@@ -52,7 +52,7 @@ public class UserDataRepository implements UserRepository {
 
     @Override
     public User getUser(String id) {
-        User userMem=userMemLocalDataSource.getUser(id);
+        User userMem=userFileLocalDataSource.getUser(id);
 
         if(userMem!=null){
             return userMem;
