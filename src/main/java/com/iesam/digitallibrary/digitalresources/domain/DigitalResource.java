@@ -8,7 +8,7 @@ public class DigitalResource {
     private String type;
     public final String loanStatus;
 
-    public DigitalResource(String autor, String stateOfDeterioration, String name, String id) {
+    public DigitalResource(String id, String name, String stateOfDeterioration, String autor) {
         this.autor = autor;
         this.stateOfDeterioration = stateOfDeterioration;
         this.name = name;
