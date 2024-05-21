@@ -66,5 +66,17 @@ public class DigitalResourceFileLocalDataSource implements DigitalResourceLocalD
         return null;
     }
 
+    @Override
+    public ArrayList<DigitalResource> getAvailableResource() {
+        ArrayList<DigitalResource> resourcesAvilables= new ArrayList<>();
+        ArrayList<DigitalResource> resources= getAllResources();
+        for(DigitalResource resource: resources){
+            if(resource.loanStatus.equals("Available")){
+                resourcesAvilables.add(resource);
+            }
+        }
+        return resourcesAvilables;
+    }
+
 
 }

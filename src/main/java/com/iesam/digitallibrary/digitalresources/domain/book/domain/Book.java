@@ -8,10 +8,17 @@ public class Book extends DigitalResource {
     public final String gender;
 
     public Book(String id, String name, String stateOfDeterioration, String autor, String numberOfPages, String description, String gender) {
-        super(id, name, stateOfDeterioration, autor);
+        super(autor, stateOfDeterioration, name, id);
         this.numberOfPages = numberOfPages;
         this.description = description;
         this.gender = gender;
+    }
+
+    public Book(String id, String name, String stateOfDeterioration, String autor, String loanStatus, String gender, String description, String numberOfPages) {
+        super(id, name, stateOfDeterioration, autor, loanStatus);
+        this.gender = gender;
+        this.description = description;
+        this.numberOfPages = numberOfPages;
     }
 
     public String getNumberOfPages() {
