@@ -12,9 +12,9 @@ public class Loan {
     public final String idLoan;
     public final String idUser;
     public final String idDigitalResource;
-    private final String statusLoan;
-    private final String starLoanDate;
-    private final String endLoanDate;
+    public final String statusLoan;
+    public final String starLoanDate;
+    public final String endLoanDate;
 
     public Loan(String idLoan, String idUser, String idDigitalResource) {
         this.idLoan = idLoan;
@@ -34,29 +34,7 @@ public class Loan {
         this.endLoanDate = endLoanDate;
     }
 
-    public String getIdLoan() {
-        return idLoan;
-    }
 
-    public String getIdUser() {
-        return idUser;
-    }
-
-    public String getIdDigitalResource() {
-        return idDigitalResource;
-    }
-
-    public String getStatusLoan() {
-        return statusLoan;
-    }
-
-    public String getEndLoanDate() {
-        return endLoanDate;
-    }
-
-    public String getStarLoanDate() {
-        return starLoanDate;
-    }
 
     @Override
     public String toString() {

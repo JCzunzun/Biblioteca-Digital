@@ -1,8 +1,16 @@
 package com.iesam.digitallibrary.loan.data;
 
+import com.iesam.digitallibrary.loan.data.local.LoanFileLocalDataSource;
 import com.iesam.digitallibrary.loan.data.local.LoanLocalDataSource;
+import com.iesam.digitallibrary.loan.domain.DeleteLoanOfUserUseCase;
+import com.iesam.digitallibrary.loan.domain.GetLoanUseCase;
 import com.iesam.digitallibrary.loan.domain.Loan;
 import com.iesam.digitallibrary.loan.domain.LoanRepository;
+import com.iesam.digitallibrary.user.data.UserDataRepository;
+import com.iesam.digitallibrary.user.data.local.UserFileLocalDataSource;
+import com.iesam.digitallibrary.user.domain.GetUserUseCase;
+import com.iesam.digitallibrary.user.domain.ModifyUserUseCase;
+import com.iesam.digitallibrary.user.domain.User;
 
 import java.util.ArrayList;
 
@@ -29,11 +37,6 @@ public class LoanDataRepository implements LoanRepository {
     @Override
     public ArrayList<Loan> obtainFinishedLoans() {
         return loanLocalDataSource.obtainFinishedLoans();
-    }
-
-    @Override
-    public void endedLoan(String id) {
-        loanLocalDataSource.endedLoan(id);
     }
 
     @Override

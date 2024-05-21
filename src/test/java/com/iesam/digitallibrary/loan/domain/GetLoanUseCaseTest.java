@@ -34,10 +34,10 @@ class GetLoanUseCaseTest {
         Loan loanReceived= getLoanUseCase.execute("1");
 
         //Then
-        Assertions.assertEquals(loanReceived.getIdLoan(),"1");
-        Assertions.assertEquals(loanReceived.getIdUser(),"1");
-        Assertions.assertEquals(loanReceived.getIdDigitalResource(),"1");
-        Assertions.assertEquals(loanReceived.getStatusLoan(),"Finished");
+        Assertions.assertEquals(loanReceived.idLoan,"1");
+        Assertions.assertEquals(loanReceived.idUser,"1");
+        Assertions.assertEquals(loanReceived.idDigitalResource,"1");
+        Assertions.assertEquals(loanReceived.statusLoan,"Finished");
     }
 
     @Test

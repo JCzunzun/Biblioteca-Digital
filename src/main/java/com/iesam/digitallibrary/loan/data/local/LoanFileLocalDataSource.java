@@ -45,7 +45,7 @@ public class LoanFileLocalDataSource implements LoanLocalDataSource {
             while (scanner.hasNextLine()) {
                 String data = scanner.nextLine();
                 Loan loan = gson.fromJson(data, Loan.class);
-                if (!loan.getIdLoan().equals(id)) {
+                if (!loan.idLoan.equals(id)) {
                     loans.add(loan);
                 }
             }
@@ -73,7 +73,7 @@ public class LoanFileLocalDataSource implements LoanLocalDataSource {
             while (scanner.hasNextLine()) {
                 String data = scanner.nextLine();
                 Loan loan = gson.fromJson(data, Loan.class);
-                if(!loan.getStatusLoan().equals("Finished") ){
+                if(!loan.statusLoan.equals("Finished") ){
                     loans.add(loan);
                 }
 
@@ -98,7 +98,7 @@ public class LoanFileLocalDataSource implements LoanLocalDataSource {
             while (scanner.hasNextLine()) {
                 String data = scanner.nextLine();
                 Loan loan = gson.fromJson(data, Loan.class);
-                if(loan.getStatusLoan().equals("Finished") ){
+                if(loan.statusLoan.equals("Finished") ){
                     loans.add(loan);
                 }
 
@@ -111,13 +111,6 @@ public class LoanFileLocalDataSource implements LoanLocalDataSource {
         return null;
     }
 
-    @Override
-    public void endedLoan(String id) {
-        Loan loan= obtainSpecifiedLoan(id);
-        deleteLoan(id);
-        loan= new Loan(loan.getIdLoan(),loan.getIdUser(), loan.getIdDigitalResource(),"","");
-        createLoan(loan);
-    }
 
     @Override
     public ArrayList<Loan> obtainLoans() {
@@ -145,7 +138,7 @@ public class LoanFileLocalDataSource implements LoanLocalDataSource {
     public Loan obtainSpecifiedLoan(String id) {
         ArrayList <Loan> loans= obtainLoans();
         for(Loan loan:loans){
-            if(loan.getIdLoan().equals(id)){
+            if(loan.idLoan.equals(id)){
                 return loan;
             }
         }

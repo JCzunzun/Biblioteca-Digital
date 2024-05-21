@@ -14,9 +14,6 @@ public class ModifyUserUseCase {
     }
 
     public void execute(User user) {
-        GetLoansOfUserUseCase loansOfUserUseCase= new GetLoansOfUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
-        ArrayList<Loan> loansOfUSer=loansOfUserUseCase.execute(user.getId());
-        User user1= new User(user.getId(), user.getDni(), user.getName(), user.getEmail(), user.getPhone(),user.getAddres(),loansOfUSer);
-        userRepository.modifyUser(user1);
+        userRepository.modifyUser(user);
     }
 }

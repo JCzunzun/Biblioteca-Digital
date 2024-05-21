@@ -24,7 +24,7 @@ public class LoanMemLocalDataSource implements LoanLocalDataSource{
     @Override
     public void deleteLoan(String id) {
         for(Loan loan: loans){
-            if(loan.getIdLoan().equals(id)){
+            if(loan.idLoan.equals(id)){
                 loans.remove(loan);
             }
         }
@@ -34,7 +34,7 @@ public class LoanMemLocalDataSource implements LoanLocalDataSource{
     public ArrayList<Loan> obtainLoansPending() {
         ArrayList<Loan> loansPending = new ArrayList<>();
         for(Loan loan:loans){
-            if(!loan.getStatusLoan().equals("Finished")){
+            if(!loan.statusLoan.equals("Finished")){
                 loansPending.add(loan);
             }
         }
@@ -45,20 +45,13 @@ public class LoanMemLocalDataSource implements LoanLocalDataSource{
     public ArrayList<Loan> obtainFinishedLoans() {
         ArrayList<Loan> loansFinished = new ArrayList<>();
         for(Loan loan:loans){
-            if(loan.getStatusLoan().equals("Finished")){
+            if(loan.statusLoan.equals("Finished")){
                 loansFinished.add(loan);
             }
         }
         return loansFinished;
     }
 
-    @Override
-    public void endedLoan(String id) {
-        Loan loan= obtainSpecifiedLoan(id);
-        deleteLoan(id);
-        loan=new Loan(loan.getIdLoan(),loan.getIdUser(), loan.getIdDigitalResource(),"","");
-        createLoan(loan);
-    }
 
     @Override
     public ArrayList<Loan> obtainLoans() {
@@ -68,7 +61,7 @@ public class LoanMemLocalDataSource implements LoanLocalDataSource{
     @Override
     public Loan obtainSpecifiedLoan(String id) {
         for(Loan loan:loans){
-            if(loan.getIdLoan().equals(id)){
+            if(loan.idLoan.equals(id)){
                 return loan;
             }
         }
