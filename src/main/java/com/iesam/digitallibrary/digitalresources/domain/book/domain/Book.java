@@ -14,6 +14,13 @@ public class Book extends DigitalResource {
         this.gender = gender;
     }
 
+    public Book(String id, String name, String stateOfDeterioration, String autor, String loanStatus, String gender, String description, String numberOfPages) {
+        super(id, name, stateOfDeterioration, autor, loanStatus);
+        this.gender = gender;
+        this.description = description;
+        this.numberOfPages = numberOfPages;
+    }
+
     public String getNumberOfPages() {
         return numberOfPages;
     }

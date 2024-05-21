@@ -8,4 +8,5 @@ public interface DigitalResourceLocalDataSource {
     void createDigitalResource(DigitalResource digitalResource);
     ArrayList<DigitalResource> getAllResources();
     DigitalResource getDigitalResource(String id);
+    ArrayList<DigitalResource> getAvailableResource();
 }
