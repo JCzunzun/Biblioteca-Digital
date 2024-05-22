@@ -9,8 +9,9 @@ import java.util.ArrayList;
 
 public class BookDataRepository implements BookRepository {
     BookLocalDataSource bookLocalDataSource;
-    public BookDataRepository(BookLocalDataSource bookLocalDataSource){
-        this.bookLocalDataSource= bookLocalDataSource;
+
+    public BookDataRepository(BookLocalDataSource bookLocalDataSource) {
+        this.bookLocalDataSource = bookLocalDataSource;
     }
 
     @Override

@@ -10,7 +10,8 @@ public class GetDigitalResourcesUseCase {
     public GetDigitalResourcesUseCase(DigitalResourceRepository digitalResourceRepository) {
         this.digitalResourceRepository = digitalResourceRepository;
     }
-    public ArrayList<DigitalResource> execute(){
+
+    public ArrayList<DigitalResource> execute() {
         return digitalResourceRepository.getAllResources();
     }
 }

@@ -6,7 +6,8 @@ public class CreateBookUseCase {
     public CreateBookUseCase(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
-    public void execute(Book book){
+
+    public void execute(Book book) {
         book.setType("Libro");
         bookRepository.createBook(book);
     }

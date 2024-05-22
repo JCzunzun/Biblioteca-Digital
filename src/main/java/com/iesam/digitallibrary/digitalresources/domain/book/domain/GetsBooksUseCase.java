@@ -8,7 +8,8 @@ public class GetsBooksUseCase {
     public GetsBooksUseCase(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
-    public ArrayList<Book> execute(){
+
+    public ArrayList<Book> execute() {
         return bookRepository.getsBooks();
     }
 }

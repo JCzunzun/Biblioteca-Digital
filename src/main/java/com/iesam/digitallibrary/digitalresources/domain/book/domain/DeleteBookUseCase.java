@@ -6,7 +6,8 @@ public class DeleteBookUseCase {
     public DeleteBookUseCase(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
-    public void execute (String id){
+
+    public void execute(String id) {
         bookRepository.deleteBook(id);
     }
 }
