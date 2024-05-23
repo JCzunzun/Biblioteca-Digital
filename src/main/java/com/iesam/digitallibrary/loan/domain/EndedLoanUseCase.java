@@ -14,13 +14,15 @@ import java.util.ArrayList;
 public class EndedLoanUseCase {
     private final LoanRepository loanRepository;
 
+
     public EndedLoanUseCase(LoanRepository loanRepository) {
         this.loanRepository = loanRepository;
     }
-    public void execute(String id){
-        Loan loan= loanRepository.obtainSpecifiedLoan(id);
+
+    public void execute(String id) {
+        Loan loan = loanRepository.obtainSpecifiedLoan(id);
         loanRepository.deleteLoan(id);
-        loan= LoanFactory.build(loan.idLoan, loan.idUser, loan.idDigitalResource, loan.starLoanDate, loan.endLoanDate);
+        loan = LoanFactory.build(loan.idLoan, loan.idUser, loan.idDigitalResource, loan.starLoanDate, loan.endLoanDate);
         loanRepository.createLoan(loan);
     }
 

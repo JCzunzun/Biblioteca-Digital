@@ -6,8 +6,12 @@ import java.util.ArrayList;
 
 public interface BookLocalDataSource {
     void createBook(Book book);
+
     void deleteBook(String id);
+
     void modifiedBook(Book book);
+
     ArrayList<Book> getsBooks();
+
     Book obtainBook(String id);
 }

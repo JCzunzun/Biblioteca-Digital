@@ -11,12 +11,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class BookFileLocalDataSource implements BookLocalDataSource{
-    private String nameFile="DigitalResource.txt";
+public class BookFileLocalDataSource implements BookLocalDataSource {
+    private String nameFile = "DigitalResource.txt";
     private Gson gson = new Gson();
     DigitalResourceLocalDataSource digitalResourceLocalDataSource;
-    public BookFileLocalDataSource(DigitalResourceLocalDataSource digitalResourceLocalDataSource){
-        this.digitalResourceLocalDataSource= digitalResourceLocalDataSource;
+
+    public BookFileLocalDataSource(DigitalResourceLocalDataSource digitalResourceLocalDataSource) {
+        this.digitalResourceLocalDataSource = digitalResourceLocalDataSource;
     }
 
     @Override
@@ -47,7 +48,7 @@ public class BookFileLocalDataSource implements BookLocalDataSource{
             }
             myWriter.close();
 
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Ha ocurrido un error al eliminar el usuario");
             e.printStackTrace();
         }
@@ -71,13 +72,13 @@ public class BookFileLocalDataSource implements BookLocalDataSource{
             while (scanner.hasNextLine()) {
                 String data = scanner.nextLine();
                 Book book = gson.fromJson(data, Book.class);
-                if(book.getType().equals("Libro")){
+                if (book.getType().equals("Libro")) {
                     books.add(book);
                 }
 
             }
             return books;
-        }catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Ha ocurrido un error al obtener el listado de usuarios");
             e.printStackTrace();
         }
@@ -86,9 +87,9 @@ public class BookFileLocalDataSource implements BookLocalDataSource{
 
     @Override
     public Book obtainBook(String id) {
-        ArrayList<Book> books= getsBooks();
-        for(Book book:books){
-            if(book.getId().equals(id)){
+        ArrayList<Book> books = getsBooks();
+        for (Book book : books) {
+            if (book.getId().equals(id)) {
                 return book;
             }
         }

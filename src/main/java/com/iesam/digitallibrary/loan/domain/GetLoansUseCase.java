@@ -8,7 +8,8 @@ public class GetLoansUseCase {
     public GetLoansUseCase(LoanRepository loanRepository) {
         this.loanRepository = loanRepository;
     }
-    public ArrayList<Loan> execute(){
+
+    public ArrayList<Loan> execute() {
         return loanRepository.obtainLoans();
     }
 }

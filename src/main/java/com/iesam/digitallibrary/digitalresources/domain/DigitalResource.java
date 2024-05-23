@@ -13,7 +13,7 @@ public class DigitalResource {
         this.stateOfDeterioration = stateOfDeterioration;
         this.name = name;
         this.id = id;
-        loanStatus="Available";
+        loanStatus = "Available";
     }
 
     public DigitalResource(String id, String name, String stateOfDeterioration, String autor, String loanStatus) {
@@ -56,6 +56,7 @@ public class DigitalResource {
                 ", stateOfDeterioration='" + stateOfDeterioration + '\'' +
                 ", autor='" + autor + '\'' +
                 ", type='" + type + '\'' +
+                ", loanStatus='" + loanStatus + '\'' +
                 '}';
     }
 }

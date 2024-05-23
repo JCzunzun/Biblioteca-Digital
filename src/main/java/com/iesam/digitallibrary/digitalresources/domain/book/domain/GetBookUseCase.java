@@ -6,7 +6,8 @@ public class GetBookUseCase {
     public GetBookUseCase(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
-    public Book execute(String id){
-        return  bookRepository.obtainBook(id);
+
+    public Book execute(String id) {
+        return bookRepository.obtainBook(id);
     }
 }

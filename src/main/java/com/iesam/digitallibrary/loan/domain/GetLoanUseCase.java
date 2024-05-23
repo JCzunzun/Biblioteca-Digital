@@ -6,7 +6,8 @@ public class GetLoanUseCase {
     public GetLoanUseCase(LoanRepository loanRepository) {
         this.loanRepository = loanRepository;
     }
-    public Loan execute(String id){
+
+    public Loan execute(String id) {
         return loanRepository.obtainSpecifiedLoan(id);
     }
 }

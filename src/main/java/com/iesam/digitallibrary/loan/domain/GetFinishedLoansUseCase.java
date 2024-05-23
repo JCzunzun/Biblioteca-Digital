@@ -8,7 +8,8 @@ public class GetFinishedLoansUseCase {
     public GetFinishedLoansUseCase(LoanRepository loanRepository) {
         this.loanRepository = loanRepository;
     }
-    public ArrayList<Loan> execute(){
+
+    public ArrayList<Loan> execute() {
         return loanRepository.obtainFinishedLoans();
     }
 }

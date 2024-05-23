@@ -21,8 +21,10 @@ public class Loan {
         this.idUser = idUser;
         this.idDigitalResource = idDigitalResource;
         this.statusLoan = "Pending";
-        this.starLoanDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));;
-        this.endLoanDate = LocalDate.now().plusDays(21).format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));;
+        this.starLoanDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        ;
+        this.endLoanDate = LocalDate.now().plusDays(21).format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        ;
     }
 
     public Loan(String idLoan, String idUser, String idDigitalResource, String starLoanDate, String endLoanDate) {
@@ -33,7 +35,6 @@ public class Loan {
         this.starLoanDate = starLoanDate;
         this.endLoanDate = endLoanDate;
     }
-
 
 
     @Override
