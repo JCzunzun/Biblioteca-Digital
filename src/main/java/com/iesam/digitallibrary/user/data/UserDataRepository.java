@@ -10,10 +10,6 @@ import com.iesam.digitallibrary.user.domain.UserRepository;
 import java.util.ArrayList;
 
 public class UserDataRepository implements UserRepository {
-    UserLocalDataSource userLocalDataSource;
-    public UserDataRepository(UserLocalDataSource userLocalDataSource){
-        this.userLocalDataSource = userLocalDataSource;
-    }
     UserFileLocalDataSource userFileLocalDataSource;
     UserMemLocalDataSource userMemLocalDataSource;
     public UserDataRepository(UserFileLocalDataSource userFileLocalDataSource, UserMemLocalDataSource userMemLocalDataSource){
@@ -67,6 +63,12 @@ public class UserDataRepository implements UserRepository {
 
     @Override
     public ArrayList<Loan> getLoansOfUser(String id) {
-        return userLocalDataSource.obtainLoansOfUser(id);
+        ArrayList<Loan> usersMem=userMemLocalDataSource.obtainLoansOfUser(id);
+        if(!usersMem.isEmpty()){
+            return usersMem;
+        }else {
+            usersMem=userFileLocalDataSource.obtainLoansOfUser(id);
+            return usersMem;
+        }
     }
 }

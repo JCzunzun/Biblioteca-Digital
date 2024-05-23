@@ -1,8 +1,8 @@
 package com.iesam.digitallibrary;
 
-import com.iesam.digitallibrary.digitalresources.domain.DigitalResource;
 import com.iesam.digitallibrary.digitalresources.presentation.DigitalResourcePresentation;
 import com.iesam.digitallibrary.loan.presentation.LoanPresentation;
+import com.iesam.digitallibrary.user.presentation.UserFactoryPresentation;
 import com.iesam.digitallibrary.user.presentation.UserPresentation;
 
 import java.util.Scanner;
@@ -21,7 +21,8 @@ public class Main {
             case 0:
                 break;
             case 1:
-                UserPresentation.menu();
+                UserPresentation userPresentation= new UserPresentation(new UserFactoryPresentation());
+                userPresentation.menu();
                 break;
             case 2:
                 DigitalResourcePresentation.menuResource();
