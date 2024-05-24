@@ -11,7 +11,13 @@ import java.util.Scanner;
 
 public class UserPresentation {
     private static Scanner sc = new Scanner(System.in);
-    public static void menu() {
+    private final UserFactoryPresentation userFactoryPresentation;
+
+    public UserPresentation(UserFactoryPresentation userFactoryPresentation) {
+        this.userFactoryPresentation = userFactoryPresentation;
+    }
+
+    public void menu() {
 
         System.out.println("0: Salir " +
                 "\n1: Crear Usuario " +
@@ -37,8 +43,7 @@ public class UserPresentation {
                 String phone = sc.next();
                 System.out.println("Digite la direccion");
                 String address = sc.next();
-                User user = new User(id, dni, name, email, phone, address, null);
-                createUser(user);
+                createUser(new User(id, dni, name, email, phone, address, null));
                 break;
 
             case 2:
@@ -60,42 +65,50 @@ public class UserPresentation {
                 String phoneModified = sc.next();
                 System.out.println("Digite la direccion");
                 String addressModiofied = sc.next();
-                User userModified = new User(idModified, dniModified, nameModified, emailModified, phoneModified, addressModiofied, null);
-                modifyUser(userModified);
+                modifyUser(new User(idModified, dniModified, nameModified, emailModified, phoneModified, addressModiofied, null));
                 break;
+
             case 4:
                 getsUsers();
                 break;
+
             case 5:
                 System.out.println("Digite el id del usuario");
-                String idConsulta = sc.next();
-                getUser(idConsulta);
+                String idSearch = sc.next();
+                getUser(idSearch);
                 break;
+
             case 6:
-                getLoansOfUser();
+                System.out.println("Digite el id del usuario");
+                String idForLoan = sc.next();
+                getLoansOfUser(idForLoan);
+                break;
+
             default:
                 break;
 
         }
     }
 
-    private static void createUser(User user) {
-        CreateUserUseCase createUserUseCase = new CreateUserUseCase(new UserDataRepository(new UserFileLocalDataSource(),new UserMemLocalDataSource()));
+    public void createUser(User user) {
+
+        CreateUserUseCase createUserUseCase = userFactoryPresentation.buildCreateUserCase();
         createUserUseCase.execute(user);
     }
 
-    private static void deleteUser(String id) {
-        DeleteUserUserCase deleteUserUserCase = new DeleteUserUserCase(new UserDataRepository(new UserFileLocalDataSource()));
+    public void deleteUser(String id) {
+
+        DeleteUserUserCase deleteUserUserCase = userFactoryPresentation.buildDeleteUserUseCase();
         deleteUserUserCase.execute(id);
     }
 
-    private static void modifyUser(User user) {
-        ModifyUserUseCase modifyUserUseCase = new ModifyUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
+    public void modifyUser(User user) {
+        ModifyUserUseCase modifyUserUseCase = userFactoryPresentation.buildModifyUserUseCase();
         modifyUserUseCase.execute(user);
     }
 
-    private static void getsUsers() {
-        GetsUsersUseCase getsUsersUseCase = new GetsUsersUseCase(new UserDataRepository(new UserFileLocalDataSource(),new UserMemLocalDataSource()));
+    public void getsUsers() {
+        GetsUsersUseCase getsUsersUseCase = userFactoryPresentation.buildGetsUsersUseCase();
         ArrayList<User> users = getsUsersUseCase.execute();
         for (User user : users) {
             System.out.println(user);
@@ -103,17 +116,18 @@ public class UserPresentation {
 
     }
 
-    private static void getUser(String id) {
-        GetUserUseCase getUserUseCase = new GetUserUseCase(new UserDataRepository(new UserFileLocalDataSource(), new UserMemLocalDataSource()));
+    public void getUser(String id) {
+
+        GetUserUseCase getUserUseCase = userFactoryPresentation.buildGetUserUseCase();
         User user = getUserUseCase.execute(id);
         System.out.println(user);
     }
-    private static void getLoansOfUser(){
-        System.out.println("Digite el id del usuario");
-        String id= sc.next();
-        GetLoansOfUserUseCase loansOfUserUseCase= new GetLoansOfUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
-        ArrayList<Loan> loans= loansOfUserUseCase.execute(id);
-        for(Loan loan:loans){
+
+    public void getLoansOfUser(String id) {
+
+        GetLoansOfUserUseCase loansOfUserUseCase = userFactoryPresentation.buildGetLoansOfUserUseCase();
+        ArrayList<Loan> loans = loansOfUserUseCase.execute(id);
+        for (Loan loan : loans) {
             System.out.println(loan.toString());
         }
     }
